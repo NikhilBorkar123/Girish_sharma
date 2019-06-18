@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name" translatable="false">App1</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="share_your_details" translatable="false">Share your Details</string>
+    <string name="first_name" translatable="false">First Name</string>
+    <string name="last_name" translatable="false">Last Name</string>
+    <string name="middle_name" translatable="false">Middle Name</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="phone_no" translatable="false">Phone No.</string>
+    <string name="gender" translatable="false">Gender :</string>
+    <string name="profession" translatable="false">Profession :</string>
+    <string name="bloodgrp" translatable="false">BloodGrp :</string>
+    <string name="dob">DOB</string>
+    <string name="submit">Submit</string>
+    <string name="pick_date">DateOfBirth</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="here_is_values">Here is values: %1$s</string>
+    <string name="no_field_can_be_empty">No Field Can Be Empty: %1$s</string>
+    <string name="postal_address">Postal Address</string>
+    <string name="city">City</string>
+    <string name="pin_code">Pin Code</string>
+    <string name="state">State</string>
+    <string name="relation">Relation</string>
+    <string name="family_member_1">Family Member 1</string>
+    <string name="name">Name</string>
+    <string name="string_date_of_birth">DOB</string>
+
+    <string name="nameerror">Enter a valid name</string>
+    <string name="emailerror">Enter a valid email</string>
+    <string name="mobileerror">Enter a valid mobile</string>
+    <string name="dateerror">Enter a valid date</string>
+    <string name="ageerror">Enter a valid age</string>
+
+</resources>
