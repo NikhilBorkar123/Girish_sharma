@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Check Issue Status</string>
+    <string name="temp"><![CDATA[<]]></string>
+    <string name="girish_sharma">Girish Sharma</string>
+    <string name="check_issue_status">Check Issue Status</string>
+    <string name="issue_id">Issue Id</string>
+    <string name="clear">Clear</string>
+    <string name="submit">Submit</string>
+    <string name="type_your_issue_id_to_get_the_status_of_the_issue">Type your issue id to get the status of the issue</string>
+</resources>
