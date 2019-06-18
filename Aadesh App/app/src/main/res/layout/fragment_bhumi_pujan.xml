@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BhumiPujan">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/event1_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:foregroundGravity="center"
+                android:text="Shram Daan"
+                android:textSize="30dp"
+                android:textColor="@color/design_default_color_primary"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/event1_subheader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:foregroundGravity="center"
+                android:text="Date:12th December 2019"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="@color/design_default_color_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event1_header" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/download2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event1_subheader" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView"
+                android:text="If It’s Sunday, It Must Be Shramdaan Day! Here’s How You Can Also Donate Effort, Not Money.Here is a simple idea that is uniting hundreds of people. They come together every Sunday to contribute their time and effort to cleaning up their surroundings. This is something you can be a part of too!
+
+There is a new culture that is brewing in the country. Come Sunday, hundreds of people take to their neighbourhoods to donate – not money, but effort.The idea of Shramdaan was initiated by Temsutula Imsong, a Varanasi based social worker. She achieved a remarkable milestone – cleaning up the ghats of Ganga – and wanted to spread the word about how a little effort from every individual can make a world of difference. She then put the idea across on Twitter and it caught on like wildfire."
+                android:textSize="13dp"
+                android:textColor="#000"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>
