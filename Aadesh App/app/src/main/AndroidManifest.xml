@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AppointmentActivity"></activity>
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppTheme.Splash">

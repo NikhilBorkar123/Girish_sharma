@@ -82,9 +82,7 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_social) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SocialFragment()).commit();
         } else if (id == R.id.nav_appointment) {
-            Intent intent= new Intent(this,AppointmentActivity.class);
-            startActivity(intent);
-            finish();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AppointmentFragment()).commit();
         } else if (id == R.id.nav_add_volunteer) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new VolunteerFragment()).commit();
         } else if (id == R.id.nav_share_details) {
@@ -93,10 +91,20 @@ public class HomeActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new NotificationFragment()).commit();
         }else if (id == R.id.nav_myprofile) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MyprofileFragment()).commit();
-         }else if(id ==  R.id.nav_events){
-            Intent intent= new Intent(this,EventActivity.class);
-            startActivity(intent);
-            finish();
+        }else if (id == R.id.nav_my_journey) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MyJourneyFragment()).commit();
+        }else if (id == R.id.nav_my_vision) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MyVisionFragment()).commit();
+        }else if (id == R.id.nav_issues) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IssuesFragment()).commit();
+        }else if (id == R.id.nav_utilities) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new UtilitiesFragment()).commit();
+        }else if (id == R.id.nav_events) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new EventFragment()).commit();
+        }else if (id == R.id.nav_logout) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LogoutFragment()).commit();
+        }else if (id == R.id.nav_settings) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
