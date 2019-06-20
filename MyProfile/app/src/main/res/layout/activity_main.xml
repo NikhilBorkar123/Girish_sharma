@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bright_cyan"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/layout_bg"
+        android:elevation="15dp"
+        android:orientation="vertical" tools:targetApi="lollipop">
+
+        <EditText
+            android:id="@+id/edtname"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            android:autofillHints=""
+            android:background="@drawable/text_bg"
+            android:elevation="10dp"
+            android:hint="@string/name"
+            android:inputType=""
+            android:padding="5dp"
+            android:text="@string/name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:targetApi="o" />
+
+        <EditText
+            android:id="@+id/edtContact"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/text_bg"
+            android:elevation="10dp"
+            android:hint="contact_no"
+            android:inputType=""
+            android:padding="5dp"
+            android:text="contact_no"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/text_bg"
+            android:elevation="10dp"
+            android:hint="email"
+            android:paddingLeft="20dp"
+            android:text="email"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnupdate_info"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/grayish_blue"
+                android:radius="20dp"
+                android:gravity="center"
+                android:text="update_info"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="logout"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+            />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/upass"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:text="change your password"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="105dp"
+        android:layout_height="138dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="140dp"
+        android:elevation="15dp"
+        android:src="@drawable/profile" />
+
+</RelativeLayout>
