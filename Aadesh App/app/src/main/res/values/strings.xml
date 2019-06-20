@@ -38,4 +38,8 @@
     <string name="events">Events</string>
     <string name="settings">Settings</string>
     <string name="logout">Logout</string>
+    <string name="new_issues">New Issues</string>
+    <string name="all_issues">All Issues</string>
+    <string name="my_issues">My Issues</string>
+    <string name="status_check">Status Check</string>
 </resources>
