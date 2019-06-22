@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="414dp"
+        android:layout_height="100dp"
+        android:background="@android:color/background_light"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:text="Girish Sharma"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="40sp"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="-1dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="380dp"
+        android:layout_height="55dp"
+        android:background="@android:color/background_light"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:text="Select the Category "
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="134dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="380dp"
+        android:layout_height="55dp"
+        android:text="Stray animals"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/background_light"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="221dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="380dp"
+        android:layout_height="55dp"
+        android:text="Pollution"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/background_light"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="371dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="380dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:background="@android:color/darker_gray"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:text="Electricity and water supplies"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="295dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="380dp"
+        android:layout_height="55dp"
+        android:text="Public transport"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/background_light"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="444dp" />
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="380dp"
+        android:layout_height="55dp"
+        android:text="Traffic and safety"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/background_light"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="444dp" />
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="380dp"
+        android:layout_height="55dp"
+        android:text="Road and footpath Maintenance"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/background_light"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="444dp" />
+</LinearLayout>
+

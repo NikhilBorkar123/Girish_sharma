@@ -1,108 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_quotes"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:addStatesFromChildren="true"
-        app:cardBackgroundColor="#00000000"
-        app:cardCornerRadius="4dp"
-        android:foregroundGravity="center"
-        android:layout_centerInParent="true"
-        app:cardElevation="2dp"
-        app:cardMaxElevation="4dp"
-        app:contentPadding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <TextView
-            android:id="@+id/quotes_text"
-            android:layout_width="match_parent"
+    <android.support.constraint.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_quotes"
+            android:layout_width="0dp"
             android:layout_height="51dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:addStatesFromChildren="true"
+            app:cardBackgroundColor="#00000000"
+            app:cardCornerRadius="4dp"
             android:foregroundGravity="center"
             android:layout_centerInParent="true"
-            android:background="@null"
-            android:textAllCaps="false"
-            android:textColor="#000"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            app:fontFamily="sans-serif" />
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_latest_events2"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="8dp"
-        app:contentPadding="4dp"
-        app:layout_constraintBottom_toTopOf="@id/viewpager"
-        app:layout_constraintEnd_toEndOf="@+id/card_quotes"
-        app:layout_constraintStart_toStartOf="@+id/card_quotes"
-        app:layout_constraintTop_toBottomOf="@+id/card_quotes">
+            app:cardElevation="2dp"
+            app:cardMaxElevation="4dp"
+            app:contentPadding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/quotes_text"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:foregroundGravity="center"
+                android:layout_centerInParent="true"
+                android:background="@null"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="italic"
+                app:fontFamily="sans-serif" />
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_latest_events2"
+            android:layout_width="0dp"
             android:layout_height="51dp"
-            android:text="Latest Events"
-            android:textColor="@android:color/white"
-            android:textSize="30sp" />
-    </android.support.v7.widget.CardView>
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="8dp"
+            app:contentPadding="4dp"
+            app:layout_constraintBottom_toTopOf="@id/viewpager"
+            app:layout_constraintEnd_toEndOf="@+id/card_quotes"
+            app:layout_constraintStart_toStartOf="@+id/card_quotes"
+            app:layout_constraintTop_toBottomOf="@+id/card_quotes">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toTopOf="@id/card_latest_events"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_latest_events2" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:text="Latest Events"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+        </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_latest_events"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="8dp"
-        app:contentPadding="4dp"
-        app:layout_constraintBottom_toTopOf="@id/slider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewpager">
-
-        <TextView
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:text="Some Glimpses"
-            android:textColor="@android:color/white"
-            android:textSize="30sp" />
-    </android.support.v7.widget.CardView>
-    <com.daimajia.slider.library.SliderLayout
-        android:id="@+id/slider"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"
-        app:items_visible="three"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_latest_events"
-        />
+            android:layout_height="285dp"
+            android:layout_centerInParent="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toTopOf="@id/card_latest_events"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_latest_events2" />
 
-    <!--<in.goodiebag.carouselpicker.CarouselPicker-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_latest_events"
+            android:layout_width="0dp"
+            android:layout_height="51dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="8dp"
+            app:contentPadding="4dp"
+            app:layout_constraintBottom_toTopOf="@id/slider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewpager">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:text="Some Glimpses"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+        </android.support.v7.widget.CardView>
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:layout_centerInParent="true"
+            app:items_visible="three"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_latest_events" />
+
+        <!--<in.goodiebag.carouselpicker.CarouselPicker-->
         <!--android:id="@+id/event_carousel"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="0dp"-->
@@ -116,7 +119,7 @@
 
 
 
-    <!--<com.ldealmei.libs.carousel.CarouselPicker-->
+        <!--<com.ldealmei.libs.carousel.CarouselPicker-->
         <!--android:id="@+id/carousel_picker"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="150dp"-->
@@ -130,7 +133,7 @@
         <!--app:layout_constraintTop_toBottomOf="@+id/event_carousel"-->
         <!--tools:layout_editor_absoluteX="100dp" />-->
 
-    <!--<android.support.v7.widget.CardView-->
+        <!--<android.support.v7.widget.CardView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_marginBottom="8dp"-->
@@ -138,4 +141,5 @@
         <!--app:layout_constraintBottom_toBottomOf="parent"-->
         <!--app:layout_constraintTop_toBottomOf="@+id/carousel_picker"-->
         <!--tools:layout_editor_absoluteX="-1dp"/>-->
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
