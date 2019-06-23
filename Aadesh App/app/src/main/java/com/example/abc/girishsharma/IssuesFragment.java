@@ -29,8 +29,7 @@ public class IssuesFragment extends Fragment {
         card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),HomeActivity.class);
-                startActivity(intent);
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,new AllIssueFragment()).commit();
             }
         });
         card_view = (CardView)view.findViewById(R.id.cardView3); // creating a CardView and assigning a value.
