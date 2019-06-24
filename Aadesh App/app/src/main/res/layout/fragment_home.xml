@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -40,38 +41,6 @@
                 android:textStyle="italic"
                 app:fontFamily="sans-serif" />
         </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_latest_events2"
-            android:layout_width="0dp"
-            android:layout_height="51dp"
-            app:cardBackgroundColor="@color/colorAccent"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="8dp"
-            app:contentPadding="4dp"
-            app:layout_constraintBottom_toTopOf="@id/viewpager"
-            app:layout_constraintEnd_toEndOf="@+id/card_quotes"
-            app:layout_constraintStart_toStartOf="@+id/card_quotes"
-            app:layout_constraintTop_toBottomOf="@+id/card_quotes">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="51dp"
-                android:text="Latest Events"
-                android:textColor="@android:color/white"
-                android:textSize="30sp" />
-        </android.support.v7.widget.CardView>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="285dp"
-            android:layout_centerInParent="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintBottom_toTopOf="@id/card_latest_events"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_latest_events2" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/card_latest_events"
@@ -82,9 +51,9 @@
             app:cardElevation="8dp"
             app:contentPadding="4dp"
             app:layout_constraintBottom_toTopOf="@id/slider"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewpager">
+            app:layout_constraintTop_toBottomOf="@+id/card_quotes">
 
             <TextView
                 android:layout_width="match_parent"
@@ -100,10 +69,36 @@
             android:layout_height="290dp"
             android:layout_centerInParent="true"
             app:items_visible="three"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_latest_events" />
+            app:layout_constraintTop_toBottomOf="@id/card_latest_events"
+            app:layout_constraintBottom_toTopOf="@id/card_latest_events2"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_latest_events2"
+            android:layout_width="0dp"
+            android:layout_height="51dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="8dp"
+            app:contentPadding="4dp"
+            app:layout_constraintTop_toBottomOf="@id/slider"
+            app:layout_constraintBottom_toTopOf="@id/viewpager">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:text="Latest Events"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="285dp"
+            android:layout_centerInParent="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintTop_toBottomOf="@id/card_latest_events2"/>
+
+
 
         <!--<in.goodiebag.carouselpicker.CarouselPicker-->
         <!--android:id="@+id/event_carousel"-->
