@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NewIssue</string>
+    <string name="description">Description</string>
+    <string name="postal_address">Postal Address</string>
+    <string name="button">Button</string>
+    <string name="new_issue">New Issue</string>
+    <string name="title">Title</string>
+</resources>
