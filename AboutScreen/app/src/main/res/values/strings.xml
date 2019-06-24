@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">AboutScreen</string>
+    <string name="description">Date of Birth :- 10/07/1976</string>
+</resources>
