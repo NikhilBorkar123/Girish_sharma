@@ -97,8 +97,6 @@ public class HomeActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MyVisionFragment()).commit();
         }else if (id == R.id.nav_issues) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IssuesFragment()).commit();
-        }else if (id == R.id.nav_utilities) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new UtilitiesFragment()).commit();
         }else if (id == R.id.nav_events) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new EventFragment()).commit();
         }else if (id == R.id.nav_logout) {

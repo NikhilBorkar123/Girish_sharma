@@ -21,10 +21,6 @@
             android:icon="@drawable/ic_issues"
             android:title="@string/issues" />
         <item
-            android:id="@+id/nav_utilities"
-            android:icon="@drawable/ic_utilities"
-            android:title="@string/utilities" />
-        <item
             android:id="@+id/nav_events"
             android:icon="@drawable/ic_all_events"
             android:title="@string/events" />

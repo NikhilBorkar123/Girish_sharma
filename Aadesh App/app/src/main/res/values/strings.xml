@@ -73,4 +73,20 @@
     <string name="map">Map</string>
     <string name="submit">Submit</string>
     <string name="add_new_family_member">Add New Family Member</string>
+
+    <string-array name="Profession">
+        <item>Profession</item>
+        <item>Private Company </item>
+        <item>Government/Public Sector</item>
+        <item>Social/Political Organisation</item>
+        <item>Defense/Civil Sector</item>
+        <item>Education Sector</item>
+        <item>Accounting,banking and finance</item>
+        <item>Medical and healthcare</item>
+        <item>Bussiness/Self Employed</item>
+        <item>Agriculture/Poultry</item>
+        <item>Student</item>
+        <item>Non-working</item>
+        <item>Other</item>
+    </string-array>
 </resources>

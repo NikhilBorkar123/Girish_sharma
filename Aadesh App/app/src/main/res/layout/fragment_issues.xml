@@ -51,11 +51,7 @@
 
             <TextView
                 android:id="@+id/textView2"
-<<<<<<< HEAD
-                android:layout_width="380dp"
-=======
                 android:layout_width="match_parent"
->>>>>>> fd2079e30305953f587a8940b357ed893191a837
                 android:layout_height="55dp"
                 android:background="@android:color/holo_green_dark"
                 android:paddingLeft="15dp"
