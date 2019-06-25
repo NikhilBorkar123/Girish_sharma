@@ -73,6 +73,7 @@
     <string name="map">Map</string>
     <string name="submit">Submit</string>
     <string name="add_new_family_member">Add New Family Member</string>
+    <string name="login">Login</string>
 
     <string-array name="Profession">
         <item>Profession</item>
