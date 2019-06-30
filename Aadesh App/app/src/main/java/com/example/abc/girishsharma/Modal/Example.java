@@ -3,31 +3,29 @@ package com.example.abc.girishsharma.Modal;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public class Example {
 
-public class ApiModelData {
-    @SerializedName("data")
+    @SerializedName("message")
     @Expose
-    private List<ApiModel> data;
+    private Message message;
     @SerializedName("success")
     @Expose
     private Boolean success;
 
-
-
-    public boolean getSuccess() {
-        return success;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setData(List<ApiModel> data) {
-        this.data = data;
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public Boolean getSuccess() {
+        return success;
     }
 
     public void setSuccess(Boolean success) {
         this.success = success;
     }
 
-    public List<ApiModel> getData() {
-        return data;
-    }
 }

@@ -93,7 +93,6 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_centerInParent="true"
-            app:items_visible="three"
             app:layout_constraintBottom_toTopOf="@id/card_latest_events2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
