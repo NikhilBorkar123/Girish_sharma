@@ -65,13 +65,6 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
         Hash_file_maps = new HashMap<String, String>();
 
         sliderLayout = (SliderLayout)view.findViewById(R.id.slider);
-        Hash_file_maps.put("Android CupCake", "http://androidblog.esy.es/images/cupcake-1.png");
-        Hash_file_maps.put("Android Donut", "http://androidblog.esy.es/images/donut-2.png");
-        Hash_file_maps.put("Android Eclair", "http://androidblog.esy.es/images/eclair-3.png");
-        Hash_file_maps.put("Android Froyo", "http://androidblog.esy.es/images/froyo-4.png");
-        Hash_file_maps.put("Android GingerBread", "http://androidblog.esy.es/images/gingerbread-5.png");
-        Log.e("hash map",Hash_file_maps.toString());
-
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<Example> call3 = apiService.getimage();
