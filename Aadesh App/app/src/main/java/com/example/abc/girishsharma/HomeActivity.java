@@ -13,7 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,BhumiPujan.OnFragmentInteractionListener,VrukshaRopan.OnFragmentInteractionListener,SamuhikVivah.OnFragmentInteractionListener,BetiBachao.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,SamuhikVivah.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

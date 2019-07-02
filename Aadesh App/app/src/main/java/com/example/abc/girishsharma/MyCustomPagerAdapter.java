@@ -1,13 +1,32 @@
 package com.example.abc.girishsharma;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.example.abc.girishsharma.Modal.Dataimg;
+import com.example.abc.girishsharma.Modal.Example;
+import com.example.abc.girishsharma.Modal.Message;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyCustomPagerAdapter extends PagerAdapter{
     Context context;
@@ -33,9 +52,10 @@ public class MyCustomPagerAdapter extends PagerAdapter{
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        View itemView = layoutInflater.inflate(R.layout.item, container, false);
 
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+        final View itemView = layoutInflater.inflate(R.layout.item, container, false);
+
+        final ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
         imageView.setImageResource(images[position]);
 
         container.addView(itemView);
@@ -44,17 +64,29 @@ public class MyCustomPagerAdapter extends PagerAdapter{
             @Override
             public void onClick(View v) {
                 if(position==0){
-                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SamuhikVivah()).commit();
-                    Toast.makeText(context, "Event no 1: Samuhik Vivah " , Toast.LENGTH_LONG).show();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("position",0);
+                    Fragment samuhik =new SamuhikVivah();
+                    samuhik.setArguments(bundle);
+                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
                 }else if (position==1){
-                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new BhumiPujan()).commit();
-                    Toast.makeText(context, "Event no 2: Shram Daan " , Toast.LENGTH_LONG).show();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("position",1);
+                    Fragment samuhik =new SamuhikVivah();
+                    samuhik.setArguments(bundle);
+                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
                 }else if (position==2){
-                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new VrukshaRopan()).commit();
-                    Toast.makeText(context, "Event no 3: Vruksha Roopan " , Toast.LENGTH_LONG).show();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("position",2);
+                    Fragment samuhik =new SamuhikVivah();
+                    samuhik.setArguments(bundle);
+                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
                 }else if (position==3){
-                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new BetiBachao()).commit();
-                    Toast.makeText(context, "Event no 4: Beti Bachao" , Toast.LENGTH_LONG).show();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("position",3);
+                    Fragment samuhik =new SamuhikVivah();
+                    samuhik.setArguments(bundle);
+                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
                 }
 
             }

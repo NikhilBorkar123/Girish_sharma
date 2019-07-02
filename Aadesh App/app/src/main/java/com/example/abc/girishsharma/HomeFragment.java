@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
         Hash_file_maps = new HashMap<String, String>();
 
-        sliderLayout = (SliderLayout)view.findViewById(R.id.slider);
+        sliderLayout = (SliderLayout) view.findViewById(R.id.slider);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<Example> call3 = apiService.getimage();
@@ -77,11 +77,11 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 imgData = message.getDataimg();
                 Log.e("image path", String.valueOf(imgData));
                 for (int i = 0; i < 4; i++) {
-                    Log.e("Image" + " " + i + "path: is", "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/"+imgData.get(i).getClientMediaPath());
-                    Hash_file_maps.put("Image" + " " + i, "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/"+imgData.get(i).getClientMediaPath());
+                    Log.e("Image" + " " + i + "path: is", "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
+                    Hash_file_maps.put("Image" + " " + i, "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
 
                 }
-                for(String name : Hash_file_maps.keySet()){
+                for (String name : Hash_file_maps.keySet()) {
 
                     TextSliderView textSliderView = new TextSliderView(getContext());
                     textSliderView
@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                             .setOnSliderClickListener(HomeFragment.this);
                     textSliderView.bundle(new Bundle());
                     textSliderView.getBundle()
-                            .putString("extra",name);
+                            .putString("extra", name);
                     sliderLayout.addSlider(textSliderView);
                 }
                 sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
@@ -107,9 +107,6 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 Log.e("image path error", t.toString());
             }
         });
-
-
-
 
 
 //        final com.ldealmei.libs.carousel.CarouselPicker carouselPicker1= (com.ldealmei.libs.carousel.CarouselPicker) view.findViewById(R.id.carousel_picker);

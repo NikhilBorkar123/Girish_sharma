@@ -4,9 +4,23 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.abc.girishsharma.Modal.Dataimg;
+import com.example.abc.girishsharma.Modal.Example;
+import com.example.abc.girishsharma.Modal.Message;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -18,6 +32,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class SamuhikVivah extends Fragment {
+    TextView textView1,textView2,textView3;
+    ImageView imageView1;
+    String title, date, imgpath, description;
+    int position;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -57,6 +75,7 @@ public class SamuhikVivah extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            position=getArguments().getInt("position");
         }
     }
 
@@ -64,7 +83,39 @@ public class SamuhikVivah extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_samuhik_vivah, container, false);
+        final View view = inflater.inflate(R.layout.fragment_samuhik_vivah, container, false);
+
+        final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        final Call<Example> call4 = apiService.getimage();
+        call4.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call4, Response<Example> response) {
+                assert response.body() != null;
+                Message message = response.body().getMessage();
+                List<Dataimg> imgData = message.getDataimg();
+                Log.e("image path", String.valueOf(imgData));
+                title = imgData.get(position).getClientMediaTitle();
+                Log.e("Title", title);
+                date = imgData.get(position).getUploadedDate();
+                imgpath = "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(position).getClientMediaPath();
+                description = imgData.get(position).getLongDescription();
+                textView1 = (TextView) view.findViewById(R.id.event1_header);
+                textView1.setText(title);
+                textView2 = (TextView) view.findViewById(R.id.event1_subheader);
+                textView2.setText(date);
+                textView3 = (TextView) view.findViewById(R.id.eventdesc);
+                textView3.setText(description);
+                imageView1 = (ImageView) view.findViewById(R.id.appCompatImageView);
+                Picasso.with(getContext()).load(imgpath).into(imageView1);
+            }
+
+            @Override
+            public void onFailure(Call<Example> call4, Throwable t) {
+                // Log error here since request failed
+                Log.e("image path error", t.toString());
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
