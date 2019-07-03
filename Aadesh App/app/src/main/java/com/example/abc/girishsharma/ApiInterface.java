@@ -22,7 +22,7 @@ public interface ApiInterface {
 
     @POST("becomeAVolunteer")
     @FormUrlEncoded
-    Call<Response> sendDetails(@Field("volunteerID") String volID,
+    Call<ApiModelData> sendDetails(@Field("volunteerID") String volID,
                                @Field("AppUserID") String appID,
                                @Field("fname") String fname,
                                @Field("lname") String lname,
