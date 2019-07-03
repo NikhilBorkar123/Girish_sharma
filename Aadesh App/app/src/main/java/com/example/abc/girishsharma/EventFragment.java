@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.abc.girishsharma.Modal.ApiModel;
 import com.example.abc.girishsharma.Modal.ApiModelData;
+import com.example.abc.girishsharma.Modal.Dataimg;
+import com.example.abc.girishsharma.Modal.Example;
+import com.example.abc.girishsharma.Modal.Message;
 
 import java.util.List;
 
@@ -24,6 +27,8 @@ import retrofit2.Response;
 
 public class EventFragment extends Fragment {
     View view;
+    Message message;
+    List<Dataimg> imgData;
     private Adapter adapter;
     private RecyclerView recyclerView;
     private List<ApiModel> eventList;
@@ -39,21 +44,23 @@ public class EventFragment extends Fragment {
 
     private void getData() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<ApiModelData> call = apiInterface.getDetails();
-        call.enqueue(new Callback<ApiModelData>() {
+        Call<Example> call3 = apiInterface.getimage();
+        Log.e("call3 is", "" + call3);
+        call3.enqueue(new Callback<Example>() {
             @Override
-            public void onResponse(Call<ApiModelData> call, Response<ApiModelData> response) {
-
-                eventList = response.body().getData();
+            public void onResponse(Call<Example> call3, Response<Example> response) {
+                assert response.body() != null;
+                message = response.body().getMessage();
+                imgData = message.getDataimg();
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-                adapter = new Adapter(getActivity(), eventList);
+                adapter = new Adapter(getActivity(), imgData);
                 recyclerView.setAdapter(adapter);
 
             }
 
             @Override
-            public void onFailure(Call<ApiModelData> call, Throwable t) {
+            public void onFailure(Call<Example> call, Throwable t) {
                 Log.e("getData", t.toString());
                 Toast.makeText(getActivity(), t.toString(), Toast.LENGTH_SHORT).show();
             }

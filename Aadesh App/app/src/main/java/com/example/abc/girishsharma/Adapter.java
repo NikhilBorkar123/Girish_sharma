@@ -1,6 +1,8 @@
 package com.example.abc.girishsharma;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,19 +10,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.abc.girishsharma.Modal.ApiModel;
+import com.example.abc.girishsharma.Modal.Dataimg;
 
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
-
+    List<Dataimg> imgData;
     private LayoutInflater inflater;
-    private List<ApiModel> eventList;
+//    private List<ApiModel> eventList;
     private Context context;
 
-    public Adapter(Context ctx, List<ApiModel> eventList){
+    public Adapter(Context ctx, List<Dataimg> imgData){
 
         this.context = ctx;
-        this.eventList = eventList;
+        this.imgData = imgData;
     }
 
     @Override
@@ -28,22 +31,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list,parent,false);
         MyViewHolder holder = new MyViewHolder(view);
-
         return holder;
     }
 
     @Override
     public void onBindViewHolder(Adapter.MyViewHolder holder, int position) {
-        holder.ename.setText(eventList.get(position).getFname());
-        holder.date.setText(eventList.get(position).getPin());
-        holder.time.setText(eventList.get(position).getPhone());
-        holder.location.setText(eventList.get(position).getCity());
+        holder.ename.setText(imgData.get(position).getClientMediaTitle());
+        holder.date.setText(imgData.get(position).getUploadedDate());
+//        holder.time.setText(imgData.get(position).getPhone());
+//        holder.location.setText(imgData.get(position).getCity());
 
     }
 
     @Override
     public int getItemCount() {
-        return eventList.size();
+        return imgData.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
@@ -55,8 +57,23 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
             ename = itemView.findViewById(R.id.ename);
             date = itemView.findViewById(R.id.date);
-            time = itemView.findViewById(R.id.time);
-            location = itemView.findViewById(R.id.location);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position=getLayoutPosition();
+                    for(int i=0;i<imgData.size();i++){
+                        if(position==i){
+                            Bundle bundle=new Bundle();
+                            bundle.putInt("position",i);
+                            Fragment samuhik =new SamuhikVivah();
+                            samuhik.setArguments(bundle);
+                            ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
+                        }
+                    }
+                }
+            });
+//            time = itemView.findViewById(R.id.time);
+//            location = itemView.findViewById(R.id.location);
         }
 
     }
