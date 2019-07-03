@@ -55,7 +55,8 @@
                         android:id="@+id/image"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:src="@drawable/upload" />
+                        android:src="@drawable/upload"
+                        android:layout_marginBottom="5dp"/>
                 </LinearLayout>
 
                 <android.support.design.widget.TextInputLayout
