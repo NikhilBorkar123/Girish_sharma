@@ -23,11 +23,11 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:background="@drawable/gradient"
+            android:background="#68e0cf"
             android:paddingLeft="15dp"
             android:paddingTop="15dp"
             android:text="About"
-            android:textColor="@android:color/background_light"
+            android:textColor="#000"
             android:textSize="20sp"
             android:textStyle="bold" />
     </android.support.v7.widget.CardView>

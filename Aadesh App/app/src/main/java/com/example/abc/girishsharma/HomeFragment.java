@@ -16,27 +16,35 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.example.abc.girishsharma.Modal.Dataimg;
+import com.example.abc.girishsharma.Modal.Example;
+import com.example.abc.girishsharma.Modal.Message;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 import in.goodiebag.carouselpicker.CarouselPicker;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
+public class HomeFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     CarouselPicker carouselPicker;
     ViewPager viewPager;
     SliderLayout sliderLayout;
-    HashMap<String, Integer> Hash_file_maps ;
+    Message message;
+    List<Dataimg> imgData;
+    HashMap<String, String> Hash_file_maps;
+    List<String> url;
     TextView textView;
 
     int images[] = {R.drawable.download1, R.drawable.download2, R.drawable.download3, R.drawable.download4};
     MyCustomPagerAdapter myCustomPagerAdapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_home,container,false);
+        final View view = inflater.inflate(R.layout.fragment_home, container, false);
 //        carouselPicker=(CarouselPicker)view.findViewById(R.id.event_carousel);
 //        List<CarouselPicker.PickerItem> itemImages= new ArrayList<>();
 //        itemImages.add(new CarouselPicker.DrawableItem(R.drawable.background));
@@ -49,38 +57,56 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 //        carouselPicker.setAdapter(imageAdapter);
 
 
-        viewPager = (ViewPager)view.findViewById(R.id.viewpager);
+        viewPager = view.findViewById(R.id.viewpager);
 
         myCustomPagerAdapter = new MyCustomPagerAdapter(getActivity(), images);
         viewPager.setAdapter(myCustomPagerAdapter);
 
-        Hash_file_maps = new HashMap<String, Integer>();
+        Hash_file_maps = new HashMap<String, String>();
 
-        sliderLayout = (SliderLayout)view.findViewById(R.id.slider);
+        sliderLayout = (SliderLayout) view.findViewById(R.id.slider);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        Hash_file_maps.put("Image 1",R.drawable.background);
-        Hash_file_maps.put("Image 2", R.drawable.background2);
-        Hash_file_maps.put("Image 3",R.drawable.background3);
-        Hash_file_maps.put("Image 4", R.drawable.download1);
-        Hash_file_maps.put("Image 5", R.drawable.download2);
+        Call<Example> call3 = apiService.getimage();
+        Log.e("call3 is", "" + call3);
+        call3.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call3, Response<Example> response) {
+                assert response.body() != null;
+                message = response.body().getMessage();
+                imgData = message.getDataimg();
+                Log.e("image path", String.valueOf(imgData));
+                for (int i = 0; i < 4; i++) {
+                    Log.e("Image" + " " + i + "path: is", "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
+                    Hash_file_maps.put("Image" + " " + i, "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
 
-        for(String name : Hash_file_maps.keySet()){
-            TextSliderView textSliderView = new TextSliderView(getActivity());
-            textSliderView
-                    .description(name)
-                    .image(Hash_file_maps.get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
-            textSliderView.bundle(new Bundle());
-            textSliderView.getBundle()
-                    .putString("extra",name);
-            sliderLayout.addSlider(textSliderView);
-        }
-        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
-        sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        sliderLayout.setCustomAnimation(new DescriptionAnimation());
-        sliderLayout.setDuration(3000);
-        sliderLayout.addOnPageChangeListener(this);
+                }
+                for (String name : Hash_file_maps.keySet()) {
+
+                    TextSliderView textSliderView = new TextSliderView(getContext());
+                    textSliderView
+                            .description(name)
+                            .image(Hash_file_maps.get(name))
+                            .setScaleType(BaseSliderView.ScaleType.Fit)
+                            .setOnSliderClickListener(HomeFragment.this);
+                    textSliderView.bundle(new Bundle());
+                    textSliderView.getBundle()
+                            .putString("extra", name);
+                    sliderLayout.addSlider(textSliderView);
+                }
+                sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                sliderLayout.setCustomAnimation(new DescriptionAnimation());
+                sliderLayout.setDuration(3000);
+                sliderLayout.addOnPageChangeListener(HomeFragment.this);
+            }
+
+            @Override
+            public void onFailure(Call<Example> call3, Throwable t) {
+                // Log error here since request failed
+                Log.e("image path error", t.toString());
+            }
+        });
 
 
 //        final com.ldealmei.libs.carousel.CarouselPicker carouselPicker1= (com.ldealmei.libs.carousel.CarouselPicker) view.findViewById(R.id.carousel_picker);
@@ -91,47 +117,40 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 //        carouselPicker1.addList(items).build(getActivity());
 
 
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-
         Call<JsonObject> call = apiService.getClientCode();
-        Log.e("call is",""+call);
+        Log.e("call is", "" + call);
         call.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<JsonObject>call, Response<JsonObject> response) {
-//                List<Movie> movies = response.body().getResults();
-//                Log.d(TAG, "Number of movies received: " + movies.size());
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject object = response.body();
-                Log.e("clientCode response","" + object);
+                Log.e("clientCode response", "" + object);
                 String ClientQuoteText = object.get("message").getAsJsonObject().get("data").getAsJsonArray().get(0).getAsJsonObject().get("ClientQuoteText").getAsString();
-                Log.e("ClientQuoteText",ClientQuoteText);
+                Log.e("ClientQuoteText", ClientQuoteText);
 
-                textView=(TextView)view.findViewById(R.id.quotes_text);
+                textView = (TextView) view.findViewById(R.id.quotes_text);
                 textView.setText(ClientQuoteText);
             }
 
             @Override
-            public void onFailure(Call<JsonObject>call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 // Log error here since request failed
                 Log.e("clientCode error", t.toString());
             }
         });
 
         Call<JsonObject> call2 = apiService.getLatestEvents();
-        Log.e("call is",""+call2);
+        Log.e("call is", "" + call2);
         call2.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<JsonObject>call2, Response<JsonObject> response) {
-//                List<Movie> movies = response.body().getResults();
-//                Log.d(TAG, "Number of movies received: " + movies.size());
+            public void onResponse(Call<JsonObject> call2, Response<JsonObject> response) {
                 JsonObject object1 = response.body();
-                Log.e("event response","" + object1);
-                int count_event=object1.get("message").getAsJsonObject().get("data").getAsJsonArray().size();
-                Log.e("size is",""+count_event);
+                Log.e("event response", "" + object1);
+                int count_event = object1.get("message").getAsJsonObject().get("data").getAsJsonArray().size();
+                Log.e("size is", "" + count_event);
             }
 
             @Override
-            public void onFailure(Call<JsonObject>call2, Throwable t) {
+            public void onFailure(Call<JsonObject> call2, Throwable t) {
                 // Log error here since request failed
                 Log.e("clientCode error", t.toString());
             }
@@ -150,7 +169,8 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
 
     @Override
     public void onPageSelected(int position) {
@@ -159,7 +179,8 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {}
+    public void onPageScrollStateChanged(int state) {
+    }
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
