@@ -1,6 +1,5 @@
 package com.example.abc.girishsharma;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -100,7 +99,7 @@ public class HomeActivity extends AppCompatActivity
         }else if (id == R.id.nav_events) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new EventFragment()).commit();
         }else if (id == R.id.nav_logout) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LogoutFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginFragment()).commit();
         }else if (id == R.id.nav_settings) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
         }

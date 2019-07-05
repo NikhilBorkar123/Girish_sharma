@@ -2,6 +2,8 @@ package com.example.abc.girishsharma;
 
 import com.example.abc.girishsharma.Modal.ApiModelData;
 import com.example.abc.girishsharma.Modal.Example;
+import com.example.abc.girishsharma.Modal.LoginModel;
+import com.example.abc.girishsharma.Modal.LoginModelData;
 import com.example.abc.girishsharma.Modal.Response;
 import com.google.gson.JsonObject;
 
@@ -10,6 +12,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiInterface {
     @GET("frontend/clientquotes/35/abc/2/tru/2147483647")
@@ -40,6 +43,10 @@ public interface ApiInterface {
                                @Field("pin") String pin,
                                @Field("CMSUserAuthenticationID") String cmID,
                                @Field("picture") String Pic);
+
+    @POST("loginCmsUser")
+    @FormUrlEncoded
+    Call<LoginModelData> getLogin(@Field("CMSUsername") String name, @Field("CMSPassword") String pass);
 
 
 }
