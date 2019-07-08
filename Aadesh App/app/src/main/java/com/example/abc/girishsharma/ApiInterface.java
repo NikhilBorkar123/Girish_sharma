@@ -44,7 +44,7 @@ public interface ApiInterface {
                                @Field("CMSUserAuthenticationID") String cmID,
                                @Field("picture") String Pic);
 
-    @POST("loginCmsUser")
+    @POST("registerOrLogin")
     @FormUrlEncoded
     Call<LoginModelData> getLogin(@Field("CMSUsername") String name, @Field("CMSPassword") String pass);
 

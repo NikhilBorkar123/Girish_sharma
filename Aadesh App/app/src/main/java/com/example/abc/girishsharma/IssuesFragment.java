@@ -21,7 +21,7 @@ public class IssuesFragment extends Fragment {
         card_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),HomeActivity.class);
+                Intent intent = new Intent(getActivity(),NewIssues.class);
                 startActivity(intent);
             }
         });

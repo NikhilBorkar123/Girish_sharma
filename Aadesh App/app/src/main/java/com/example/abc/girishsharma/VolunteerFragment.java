@@ -2,6 +2,7 @@ package com.example.abc.girishsharma;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -12,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,8 @@ import android.widget.Toast;
 import com.example.abc.girishsharma.Modal.ApiModelData;
 import com.example.abc.girishsharma.Modal.Response;
 
+import java.io.ByteArrayOutputStream;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -33,15 +37,13 @@ import static android.app.Activity.RESULT_OK;
 
 public class VolunteerFragment extends Fragment {
     View view;
-    private String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
+    private String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic;
     TextInputLayout Fname, Lname, Email, Phone, Adr1, Adr2, City, State, Pincode;
     Button submit;
     Spinner profession;
 
 
-    String mediaPath;
-    ImageView imgView;
-
+    private ImageView imgView;
     String[] spinnerValue = {"Profession",
             "Private Company",
             "Government/Public Sector",
@@ -59,10 +61,7 @@ public class VolunteerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_volunteer, container, false);
-
         findViews();
-
-        //call methods
         view.findViewById(R.id.subbtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,9 +69,7 @@ public class VolunteerFragment extends Fragment {
                 sendFormDetails();
             }
         });
-
-        //Upload Image
-        view.findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
+        imgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent imageIntent = new Intent(Intent.ACTION_PICK,
@@ -80,6 +77,13 @@ public class VolunteerFragment extends Fragment {
                 startActivityForResult(imageIntent, 0);
             }
         });
+
+//
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.id.image);
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//        byte[] imageBytes = baos.toByteArray();
+//        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
 
         //set spinner value
@@ -111,30 +115,24 @@ public class VolunteerFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-            // When an Image is picked
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
-
-                // Get the Image from data
                 Uri selectedImage = data.getData();
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                assert cursor != null;
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                mediaPath = cursor.getString(columnIndex);
-                // Set the Image in ImageView for Previewing the Media
-                imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
-                cursor.close();
-
+//                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//                Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+//                assert cursor != null;
+//                cursor.moveToFirst();
+//                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//                mediaPath = cursor.getString(columnIndex);
+//                imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
+//                cursor.close();
+                Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
+                imgView.setImageBitmap(bitmapImage);
             } else {
                 Toast.makeText(getContext(), "please picked a image", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
         }
-
     }
 
     private void findViews() {
@@ -163,12 +161,14 @@ public class VolunteerFragment extends Fragment {
         s8 = City.getEditText().getText().toString();
         s9 = State.getEditText().getText().toString();
         s10 = Pincode.getEditText().getText().toString();
+//        pic = imageString;
+
 
     }
 
     private void sendFormDetails() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<ApiModelData> call = apiInterface.sendDetails("", "", s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "1", "");
+        Call<ApiModelData> call = apiInterface.sendDetails("", "", s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "1","");
         call.enqueue(new Callback<ApiModelData>() {
             @Override
             public void onResponse(Call<ApiModelData> call, retrofit2.Response<ApiModelData> response) {

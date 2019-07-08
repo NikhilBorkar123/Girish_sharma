@@ -1,12 +1,14 @@
 package com.example.abc.girishsharma;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.abc.girishsharma.Modal.ApiModel;
@@ -16,6 +18,7 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     List<Dataimg> imgData;
+    ImageView Map;
     private LayoutInflater inflater;
 //    private List<ApiModel> eventList;
     private Context context;
@@ -51,10 +54,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView ename,date,time,location;
+        ImageView Map;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
+            Map = itemView.findViewById(R.id.map);
             ename = itemView.findViewById(R.id.ename);
             date = itemView.findViewById(R.id.date);
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +76,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                     }
                 }
             });
+
+            Map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context,MapsActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+
+
+
 //            time = itemView.findViewById(R.id.time);
 //            location = itemView.findViewById(R.id.location);
         }
