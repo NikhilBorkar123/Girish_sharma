@@ -15,7 +15,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
-    @GET("frontend/clientquotes/35/abc/2/tru/2147483647")
+    @GET("frontend/clientquotes/50")
     Call<JsonObject> getClientCode();
 
     @GET("frontend/events/35/ghj/23/hg/2147483647?show=maps")
