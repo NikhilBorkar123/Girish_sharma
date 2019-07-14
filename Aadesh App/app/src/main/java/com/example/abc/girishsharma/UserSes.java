@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class UserSes {
-    private String CMSUsername,CMSUserAuthenticationID;
+    private String CMSUsername,CMSUserAuthenticationID,AppUserID;
     private SharedPreferences sharedPreferences;
     private Context context;
 
@@ -17,7 +17,7 @@ public class UserSes {
     }
 
     public String getCMSUsername(){
-        CMSUsername = sharedPreferences.getString("CMSUsername","");
+        CMSUsername = sharedPreferences.getString("CMSUsername","Addy@123");
         return CMSUsername;
 
     }
@@ -28,7 +28,7 @@ public class UserSes {
     }
 
     public String getCMSUserAuthenticationID() {
-        CMSUserAuthenticationID = sharedPreferences.getString("CMSUserAuthenticationID","");
+        CMSUserAuthenticationID = sharedPreferences.getString("CMSUserAuthenticationID","50");
         return CMSUserAuthenticationID;
 
     }
@@ -36,5 +36,14 @@ public class UserSes {
     public void setCMSUserAuthenticationID(String CMSUserAuthenticationID) {
         this.CMSUserAuthenticationID = CMSUserAuthenticationID;
         sharedPreferences.edit().putString("CMSUserAuthenticationID",CMSUserAuthenticationID).apply();
+    }
+
+    public String getAppUserID(){
+        AppUserID = sharedPreferences.getString("AppUserID","");
+        return AppUserID;
+    }
+    public void setAppUserID(String AppUserID){
+        this.AppUserID = AppUserID;
+        sharedPreferences.edit().putString("AppUserID",AppUserID).apply();
     }
 }

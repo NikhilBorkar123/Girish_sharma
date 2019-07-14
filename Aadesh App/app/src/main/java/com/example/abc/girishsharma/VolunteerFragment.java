@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.CursorLoader;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,12 @@ import com.example.abc.girishsharma.Modal.ApiModelData;
 import com.example.abc.girishsharma.Modal.Response;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -37,10 +43,11 @@ import static android.app.Activity.RESULT_OK;
 
 public class VolunteerFragment extends Fragment {
     View view;
-    private String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic;
+    private String image,s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
     TextInputLayout Fname, Lname, Email, Phone, Adr1, Adr2, City, State, Pincode;
     Button submit;
     Spinner profession;
+    private UserSes userSes;
 
 
     private ImageView imgView;
@@ -62,7 +69,10 @@ public class VolunteerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_volunteer, container, false);
         findViews();
-        view.findViewById(R.id.subbtn).setOnClickListener(new View.OnClickListener() {
+
+        userSes = new UserSes(getContext());
+
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getData();
@@ -78,14 +88,6 @@ public class VolunteerFragment extends Fragment {
             }
         });
 
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.id.image);
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//        byte[] imageBytes = baos.toByteArray();
-//        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-
         //set spinner value
         profession = view.findViewById(R.id.spProf);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, spinnerValue);
@@ -96,13 +98,11 @@ public class VolunteerFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                //set selected spinner value here.......
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
-
             }
         });
 
@@ -117,6 +117,7 @@ public class VolunteerFragment extends Fragment {
         try {
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
                 Uri selectedImage = data.getData();
+<<<<<<< HEAD
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
                 assert cursor != null;
@@ -125,14 +126,35 @@ public class VolunteerFragment extends Fragment {
                 String mediaPath = cursor.getString(columnIndex);
                 imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
                 cursor.close();
+=======
+>>>>>>> d814df9198b541be1d72669d6f41439ceefd7e57
                 Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
                 imgView.setImageBitmap(bitmapImage);
+
+
+                Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(selectedImage));
+                Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
+                image = ConvertBitmapToString(resizedBitmap);
+
+
             } else {
                 Toast.makeText(getContext(), "please picked a image", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Toast.makeText(getContext(), "Something went wrong in image", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public static String ConvertBitmapToString(Bitmap bitmap){
+        String encodedImage = "";
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        try {
+            encodedImage= URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encodedImage;
     }
 
     private void findViews() {
@@ -147,6 +169,7 @@ public class VolunteerFragment extends Fragment {
         City = view.findViewById(R.id.city);
         State = view.findViewById(R.id.state);
         Pincode = view.findViewById(R.id.pincode);
+        submit = view.findViewById(R.id.subbtn);
 
     }
 
@@ -161,13 +184,20 @@ public class VolunteerFragment extends Fragment {
         s8 = City.getEditText().getText().toString();
         s9 = State.getEditText().getText().toString();
         s10 = Pincode.getEditText().getText().toString();
+<<<<<<< HEAD
 //        pic = imageString;
+=======
+>>>>>>> d814df9198b541be1d72669d6f41439ceefd7e57
     }
 
     private void sendFormDetails() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+<<<<<<< HEAD
         Call<ApiModelData> call = apiInterface.sendDetails("", "50", s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "50","");
         Log.e("call is", "" + call);
+=======
+        Call<ApiModelData> call = apiInterface.sendDetails(null,null, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, userSes.getCMSUserAuthenticationID(),image);
+>>>>>>> d814df9198b541be1d72669d6f41439ceefd7e57
         call.enqueue(new Callback<ApiModelData>() {
             @Override
             public void onResponse(Call<ApiModelData> call, retrofit2.Response<ApiModelData> response) {
@@ -178,8 +208,12 @@ public class VolunteerFragment extends Fragment {
                         Log.v("yes", volunteer.toString());
                         Toast.makeText(getContext(), "Sumbit data successfully...", Toast.LENGTH_SHORT).show();
                     } else {
+<<<<<<< HEAD
                         Log.v("no", volunteer.toString());
                         Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
+=======
+                        Toast.makeText(getContext(), "server response...", Toast.LENGTH_SHORT).show();
+>>>>>>> d814df9198b541be1d72669d6f41439ceefd7e57
                     }
                 } else {
                     assert volunteer != null;
@@ -190,7 +224,6 @@ public class VolunteerFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ApiModelData> call, Throwable t) {
-
             }
         });
     }

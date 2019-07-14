@@ -40,6 +40,10 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
     List<String> url;
     TextView textView;
 
+    private UserSes userSes;
+    String AppUserID;
+
+
     int images[] = {R.drawable.download1, R.drawable.download2, R.drawable.download3, R.drawable.download4};
     MyCustomPagerAdapter myCustomPagerAdapter;
 
@@ -55,6 +59,8 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 //        itemImages.add(new CarouselPicker.DrawableItem(R.drawable.download3));
 //        CarouselPicker.CarouselViewAdapter imageAdapter =new CarouselPicker.CarouselViewAdapter(getActivity(),itemImages,0);
 //        carouselPicker.setAdapter(imageAdapter);
+
+        userSes = new UserSes(getContext());
 
 
         viewPager = view.findViewById(R.id.viewpager);
