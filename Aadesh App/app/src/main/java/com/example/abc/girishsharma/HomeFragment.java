@@ -76,7 +76,11 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 message = response.body().getMessage();
                 imgData = message.getDataimg();
                 Log.e("image path", String.valueOf(imgData));
-                for (int i = 0; i < 2; i++) {
+                int size=imgData.size();
+                if(size>8){
+                    size=8;
+                }
+                for (int i = 0; i < size; i++) {
                     Log.e("Image" + " " + i + "path: is", "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
                     Hash_file_maps.put("Image" + " " + i, "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
 

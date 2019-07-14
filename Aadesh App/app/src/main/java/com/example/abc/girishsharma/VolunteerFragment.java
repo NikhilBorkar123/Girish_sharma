@@ -117,21 +117,21 @@ public class VolunteerFragment extends Fragment {
         try {
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
                 Uri selectedImage = data.getData();
-//                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-//                Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-//                assert cursor != null;
-//                cursor.moveToFirst();
-//                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//                mediaPath = cursor.getString(columnIndex);
-//                imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
-//                cursor.close();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                assert cursor != null;
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String mediaPath = cursor.getString(columnIndex);
+                imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
+                cursor.close();
                 Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
                 imgView.setImageBitmap(bitmapImage);
             } else {
                 Toast.makeText(getContext(), "please picked a image", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Something went wrong in image", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -162,13 +162,12 @@ public class VolunteerFragment extends Fragment {
         s9 = State.getEditText().getText().toString();
         s10 = Pincode.getEditText().getText().toString();
 //        pic = imageString;
-
-
     }
 
     private void sendFormDetails() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<ApiModelData> call = apiInterface.sendDetails("", "", s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "1","");
+        Call<ApiModelData> call = apiInterface.sendDetails("", "50", s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "50","");
+        Log.e("call is", "" + call);
         call.enqueue(new Callback<ApiModelData>() {
             @Override
             public void onResponse(Call<ApiModelData> call, retrofit2.Response<ApiModelData> response) {
@@ -176,9 +175,11 @@ public class VolunteerFragment extends Fragment {
                 ApiModelData volunteer = response.body();
                 if (volunteer != null) {
                     if (volunteer.getSuccess()) {
+                        Log.v("yes", volunteer.toString());
                         Toast.makeText(getContext(), "Sumbit data successfully...", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getContext(), "Something went wrong...", Toast.LENGTH_SHORT).show();
+                        Log.v("no", volunteer.toString());
+                        Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     assert volunteer != null;

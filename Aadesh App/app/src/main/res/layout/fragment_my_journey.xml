@@ -56,16 +56,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
         <android.support.design.widget.TabItem
+            android:id="@+id/tab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Personal" />
 
         <android.support.design.widget.TabItem
+            android:id="@+id/tab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Political" />
 
         <android.support.design.widget.TabItem
+            android:id="@+id/tab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/social_title" />
@@ -75,10 +78,12 @@
     <fragment
         android:id="@+id/fragment"
         android:name="com.example.abc.girishsharma.Profile_selectorFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
