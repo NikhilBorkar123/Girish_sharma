@@ -4,17 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.abc.girishsharma.Modal.ApiModel;
 import com.example.abc.girishsharma.Modal.Dataimg;
 import com.example.abc.girishsharma.Modal.Example;
 import com.example.abc.girishsharma.Modal.Message;
@@ -25,39 +22,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MyIssueFragment extends Fragment {
+public class Photos extends Fragment {
     View view;
     Message message;
     List<Dataimg> imgData;
-    private Adapter adapter;
+    private RecyclerAdapterG adapter;
     private RecyclerView recyclerView;
-    private List<ApiModel> eventList;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_my_issues,container,false);
+        view = inflater.inflate(R.layout.fragment_photos, container, false);
         getData();
-        recyclerView = view.findViewById(R.id.recycler);
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener( new View.OnKeyListener()
-        {
-            @Override
-            public boolean onKey( View v, int keyCode, KeyEvent event )
-            {
-                if( keyCode == KeyEvent.KEYCODE_BACK )
-                {
-                    getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    return true;
-                }
-                return false;
-            }
-        } );
+        recyclerView = view.findViewById(R.id.recyclerViewc);
         return view;
     }
+
     private void getData() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Example> call3 = apiInterface.getimage();
+        Call<Example> call3 = apiInterface.getGalleryList();
         Log.e("call3 is", "" + call3);
         call3.enqueue(new Callback<Example>() {
             @Override
@@ -67,7 +50,7 @@ public class MyIssueFragment extends Fragment {
                 imgData = message.getDataimg();
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-                adapter = new Adapter(getActivity(), imgData);
+                adapter = new RecyclerAdapterG(getActivity(), imgData);
                 recyclerView.setAdapter(adapter);
 
             }
@@ -79,5 +62,4 @@ public class MyIssueFragment extends Fragment {
             }
         });
     }
-
 }

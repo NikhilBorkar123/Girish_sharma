@@ -16,6 +16,9 @@ public interface ApiInterface {
     @GET("frontend/clientquotes/50")
     Call<JsonObject> getClientCode();
 
+    @GET("frontend/gallery/50")
+    Call<Example> getGalleryList();
+
     @GET("frontend/events/35/ghj/23/hg/2147483647?show=maps")
     Call<JsonObject> getLatestEvents();
 

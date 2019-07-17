@@ -13,9 +13,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.CursorLoader;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +107,21 @@ public class VolunteerFragment extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    return true;
+                }
+                return false;
+            }
+        } );
 
 
         return view;
@@ -117,7 +134,6 @@ public class VolunteerFragment extends Fragment {
         try {
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
                 Uri selectedImage = data.getData();
-<<<<<<< HEAD
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
                 assert cursor != null;
@@ -126,8 +142,6 @@ public class VolunteerFragment extends Fragment {
                 String mediaPath = cursor.getString(columnIndex);
                 imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
                 cursor.close();
-=======
->>>>>>> d814df9198b541be1d72669d6f41439ceefd7e57
                 Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
                 imgView.setImageBitmap(bitmapImage);
 
@@ -184,20 +198,15 @@ public class VolunteerFragment extends Fragment {
         s8 = City.getEditText().getText().toString();
         s9 = State.getEditText().getText().toString();
         s10 = Pincode.getEditText().getText().toString();
-<<<<<<< HEAD
+
 //        pic = imageString;
-=======
->>>>>>> d814df9198b541be1d72669d6f41439ceefd7e57
     }
 
     private void sendFormDetails() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-<<<<<<< HEAD
-        Call<ApiModelData> call = apiInterface.sendDetails("", "50", s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "50","");
-        Log.e("call is", "" + call);
-=======
-        Call<ApiModelData> call = apiInterface.sendDetails(null,null, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, userSes.getCMSUserAuthenticationID(),image);
->>>>>>> d814df9198b541be1d72669d6f41439ceefd7e57
+//        Call<ApiModelData> call = apiInterface.sendDetails("", "50", s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "50","");
+//        Log.e("call is", "" + call);
+        Call<ApiModelData> call = apiInterface.sendDetails(null,null, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, null,image);
         call.enqueue(new Callback<ApiModelData>() {
             @Override
             public void onResponse(Call<ApiModelData> call, retrofit2.Response<ApiModelData> response) {
@@ -208,20 +217,15 @@ public class VolunteerFragment extends Fragment {
                         Log.v("yes", volunteer.toString());
                         Toast.makeText(getContext(), "Sumbit data successfully...", Toast.LENGTH_SHORT).show();
                     } else {
-<<<<<<< HEAD
                         Log.v("no", volunteer.toString());
                         Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
-=======
                         Toast.makeText(getContext(), "server response...", Toast.LENGTH_SHORT).show();
->>>>>>> d814df9198b541be1d72669d6f41439ceefd7e57
                     }
                 } else {
                     assert volunteer != null;
                     Log.v("Response error", volunteer.toString());
                 }
-
             }
-
             @Override
             public void onFailure(Call<ApiModelData> call, Throwable t) {
             }

@@ -1,18 +1,21 @@
 package com.example.abc.girishsharma;
 
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SamuhikVivah.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, SamuhikVivah.OnFragmentInteractionListener,Event_Images.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,8 @@ public class HomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        if(savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         }
     }
 
@@ -42,7 +45,19 @@ public class HomeActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_warning_black_24dp)
+                    .setTitle("Closing App")
+                    .setMessage("Are you sure you want to Exit?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
         }
     }
 
@@ -75,33 +90,33 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
-        }else if (id == R.id.nav_gallery) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new GalleryFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        } else if (id == R.id.nav_gallery) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new GalleryFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_social) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SocialFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SocialFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_appointment) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AppointmentFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AppointmentFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_add_volunteer) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new VolunteerFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new VolunteerFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_share_details) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ShareDetailsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareDetailsFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_notifications) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new NotificationFragment()).commit();
-        }else if (id == R.id.nav_myprofile) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MyprofileFragment()).commit();
-        }else if (id == R.id.nav_my_journey) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MyJourneyFragment()).commit();
-        }else if (id == R.id.nav_my_vision) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MyVisionFragment()).commit();
-        }else if (id == R.id.nav_issues) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IssuesFragment()).commit();
-        }else if (id == R.id.nav_events) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new EventFragment()).commit();
-        }else if (id == R.id.nav_logout) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginFragment()).commit();
-        }else if (id == R.id.nav_settings) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SettingsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NotificationFragment()).addToBackStack("tag").commit();
+        } else if (id == R.id.nav_myprofile) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyprofileFragment()).addToBackStack("tag").commit();
+        } else if (id == R.id.nav_my_journey) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyJourneyFragment()).addToBackStack("tag").commit();
+        } else if (id == R.id.nav_my_vision) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyInitiativesFragment()).addToBackStack("tag").commit();
+        } else if (id == R.id.nav_issues) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new IssuesFragment()).addToBackStack("tag").commit();
+        } else if (id == R.id.nav_events) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventFragment()).addToBackStack("tag").commit();
+        } else if (id == R.id.nav_logout) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).addToBackStack("tag").commit();
+        } else if (id == R.id.nav_settings) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).addToBackStack("tag").commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

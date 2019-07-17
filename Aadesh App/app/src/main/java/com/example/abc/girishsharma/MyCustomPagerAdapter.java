@@ -92,6 +92,7 @@ public class MyCustomPagerAdapter extends PagerAdapter{
             }
         });
 
+
         return itemView;
     }
 

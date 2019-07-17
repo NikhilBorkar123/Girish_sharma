@@ -59,7 +59,7 @@
     <string name="beti_bachao_description">Beti bachao beti padhao(means save the girl child and educate the girl child) ,the purpose was generating awareness as well as improving the efficiency of welfare services for women and girl child in the indian society. Girl children were killed in the mother\'s womb through proper detection techniques before birth.</string>
     <string name="vruksha_ropan_description">Tree-planting is the process of transplanting tree seedlings, generally for forestry, land reclamation, or landscaping purpose. It differs from the transplantation of larger trees in arboriculture, and from the lower cost but slower and less reliable distribution of tree seeds. In silviculture the activity is known as reforestation, or afforestation, depending on whether the area being planted has or has not recently been forested. It involves planting seedlings over an area of land where the forest has been harvested or damaged by fire, disease or human activity. Tree planting is carried out in many different parts of the world, and strategies may differ widely across nations and regions and among individual reforestation companies. Tree planting is grounded in forest science, and if performed properly can result in the successful regeneration of a deforested area. Reforestation is the commercial logging industry\'s answer to the large-scale destruction of old growth forests, but a planted forest rarely replicates the biodiversity and complexity of a natural forest.</string>
     <string name="my_journey">My Journey</string>
-    <string name="my_vision">My Vision</string>
+    <string name="my_vision">My Initiatives</string>
     <string name="issues">Issues</string>
     <string name="utilities">Utilities</string>
     <string name="events">Events</string>
@@ -91,4 +91,5 @@
         <item>Other</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="videos">Videos</string>
 </resources>
