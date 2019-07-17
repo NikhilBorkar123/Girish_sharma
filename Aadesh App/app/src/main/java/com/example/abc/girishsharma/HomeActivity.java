@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SamuhikVivah.OnFragmentInteractionListener,Event_Images.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SamuhikVivah.OnFragmentInteractionListener,Event_Images.OnFragmentInteractionListener,CommentBox.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

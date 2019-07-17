@@ -93,7 +93,7 @@ public class Event_Images extends Fragment {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.comment_container,new CommentBox()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,new CommentBox()).commit();
             }
         });
 
