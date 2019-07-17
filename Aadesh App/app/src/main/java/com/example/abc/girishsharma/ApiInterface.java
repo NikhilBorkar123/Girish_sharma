@@ -3,6 +3,7 @@ package com.example.abc.girishsharma;
 import com.example.abc.girishsharma.Modal.ApiModelData;
 import com.example.abc.girishsharma.Modal.Example;
 import com.example.abc.girishsharma.Modal.Example2;
+import com.example.abc.girishsharma.Modal.Example3;
 import com.example.abc.girishsharma.Modal.LoginModelData;
 import com.google.gson.JsonObject;
 
@@ -18,6 +19,9 @@ public interface ApiInterface {
 
     @GET("frontend/gallery/50")
     Call<Example> getGalleryList();
+
+    @GET("frontend/initiatives/50/fg/21/agh/2147483647")
+    Call<Example3> getInitiatives();
 
     @GET("frontend/events/35/ghj/23/hg/2147483647?show=maps")
     Call<JsonObject> getLatestEvents();
