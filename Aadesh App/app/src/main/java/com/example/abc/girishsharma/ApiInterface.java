@@ -7,11 +7,15 @@ import com.example.abc.girishsharma.Modal.Example3;
 import com.example.abc.girishsharma.Modal.LoginModelData;
 import com.google.gson.JsonObject;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface ApiInterface {
     @GET("frontend/clientquotes/50")
@@ -35,22 +39,24 @@ public interface ApiInterface {
     @GET("becomeAVolunteer")
     Call<ApiModelData> getDetails();
 
+    @Multipart
     @POST("becomeAVolunteer")
-    @FormUrlEncoded
-    Call<ApiModelData> sendDetails(@Field("volunteerID") String volID,
-                               @Field("AppUserID") String appID,
-                               @Field("fname") String fname,
-                               @Field("lname") String lname,
-                               @Field("profession") String prof,
-                               @Field("email") String email,
-                               @Field("phone") String phone,
-                               @Field("address1") String adr1,
-                               @Field("address2") String adr2,
-                               @Field("city") String city,
-                               @Field("state") String state,
-                               @Field("pin") String pin,
-                               @Field("CMSUserAuthenticationID") String cmID,
-                               @Field("picture") String Pic);
+    Call<ApiModelData> sendDetails(
+            @Part("volunteerID") RequestBody volID,
+            @Part("AppUserID") RequestBody appID,
+            @Part("fname") RequestBody fname,
+            @Part("lname") RequestBody lname,
+            @Part("profession") RequestBody prof,
+            @Part("email") RequestBody email,
+            @Part("phone") RequestBody phone,
+            @Part("address1") RequestBody adr1,
+            @Part("address2") RequestBody adr2,
+            @Part("city") RequestBody city,
+            @Part("state") RequestBody state,
+            @Part("pin") RequestBody pin,
+            @Part("CMSUserAuthenticationID") RequestBody cmID,
+            @Part MultipartBody.Part photo
+            );
 
     @POST("registerOrLogin")
     @FormUrlEncoded

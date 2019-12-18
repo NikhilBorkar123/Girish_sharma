@@ -3,6 +3,8 @@ package com.example.abc.girishsharma.Modal;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
+
 public class ApiModel {
 
     @SerializedName("volunteerID")
@@ -46,7 +48,7 @@ public class ApiModel {
     private String cMSUserAuthenticationID;
     @SerializedName("picture")
     @Expose
-    private String picture;
+    private File picture;
 
     public String getVolunteerID() {
         return volunteerID;
@@ -152,11 +154,11 @@ public class ApiModel {
         this.cMSUserAuthenticationID = cMSUserAuthenticationID;
     }
 
-    public String getPicture() {
+    public File getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(File picture) {
         this.picture = picture;
     }
 

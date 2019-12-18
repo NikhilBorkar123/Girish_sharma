@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">Adesh Mahule</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Adesh Mahule</string>
+    <string name="nav_header_subtitle">aadeshmahule1998a@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="share_your_details">Share Your Details</string>
+    <string name="become_volunteer">Become Volunteer</string>
+    <string name="appointments">Appointments</string>
+    <string name="social">Social</string>
+    <string name="gallery">Gallery</string>
+    <string name="notifications">Notifications</string>
+    <string name="my_profile">My Profile</string>
+    <string name="gallery_title">Gallery</string>
+    <string name="social_title">Social</string>
+    <string name="appointment_title">Appointments</string>
+    <string name="myprofile_title">My Profile</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="become_volunteer_title">Become Volunteer</string>
+    <string name="share_details_title">Share Details</string>
+    <string name="girish_sharma_title">Adesh Mahule</string>
+    <string name="home_title">Home</string>
+    <string name="quote1">Live Life to the Fullest</string>
+    <string name="sliderdescription">sliderDescription</string>
+    <string name="splashscrreen">SplashScrreen</string>
+    <string name="first_name" translatable="false">First Name</string>
+    <string name="last_name" translatable="false">Last Name</string>
+    <string name="middle_name" translatable="false">Middle Name</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="phone_no" translatable="false">Phone No.</string>
+    <string name="gender" translatable="false">Gender :</string>
+    <string name="profession" translatable="false">Profession :</string>
+    <string name="bloodgrp" translatable="false">BloodGrp :</string>
+    <string name="dob">DOB</string>
+    <string name="pick_date">DateOfBirth</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="here_is_values">Here is values: %1$s</string>
+    <string name="no_field_can_be_empty">No Field Can Be Empty: %1$s</string>
+    <string name="postal_address">Postal Address</string>
+    <string name="city">City</string>
+    <string name="pin_code">Pin Code</string>
+    <string name="state">State</string>
+    <string name="relation">Relation</string>
+    <string name="family_member_1">Family Member 1</string>
+    <string name="name">Name</string>
+    <string name="string_date_of_birth">DOB</string>
+
+    <string name="nameerror">Enter a valid name</string>
+    <string name="emailerror">Enter a valid email</string>
+    <string name="mobileerror">Enter a valid mobile</string>
+    <string name="dateerror">Enter a valid date</string>
+    <string name="ageerror">Enter a valid age</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="samuhik_vivah_description">Chief Minister Yogi Adityanath has announced to give 51 thousand rupees now under collective marriage scheme. The first 35 thousand rupees were given. On the occasion of Republic Day, he said that giving the right to the poor and the disadvantaged people is the honor of the soul of the Constitution. CM said that Kanyadan is a sacred task. In the year 2017-2018, the State Government started a mass marriage scheme for the daughters of poor families. Under the scheme 35 thousand rupees were being given, but now it has been increased to 51 thousand rupees. On February 9, a total of 10 thousand pairs of mass wedding ceremonies will be organized in the entire state. He said that the government is running a special campaign to give pension to the elderly. After the special campaign, the eligible elderly number will be 46 lakh, which is 37 lakh so far. Under the Prime Minister\'s housing scheme, the government has provided housing to 18 lakh poor families in the rural and urban areas. Similarly, in the Swachh Bharat Mission, 2.60 crore households have been provided free electricity connections to 94 lakh families under toilets and good luck scheme.</string>
+    <string name="beti_bachao_description">Beti bachao beti padhao(means save the girl child and educate the girl child) ,the purpose was generating awareness as well as improving the efficiency of welfare services for women and girl child in the indian society. Girl children were killed in the mother\'s womb through proper detection techniques before birth.</string>
+    <string name="vruksha_ropan_description">Tree-planting is the process of transplanting tree seedlings, generally for forestry, land reclamation, or landscaping purpose. It differs from the transplantation of larger trees in arboriculture, and from the lower cost but slower and less reliable distribution of tree seeds. In silviculture the activity is known as reforestation, or afforestation, depending on whether the area being planted has or has not recently been forested. It involves planting seedlings over an area of land where the forest has been harvested or damaged by fire, disease or human activity. Tree planting is carried out in many different parts of the world, and strategies may differ widely across nations and regions and among individual reforestation companies. Tree planting is grounded in forest science, and if performed properly can result in the successful regeneration of a deforested area. Reforestation is the commercial logging industry\'s answer to the large-scale destruction of old growth forests, but a planted forest rarely replicates the biodiversity and complexity of a natural forest.</string>
+    <string name="my_journey">My Journey</string>
+    <string name="my_vision">My Vision</string>
+    <string name="issues">Issues</string>
+    <string name="utilities">Utilities</string>
+    <string name="events">Events</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="new_issues">New Issues</string>
+    <string name="all_issues">All Issues</string>
+    <string name="my_issues">My Issues</string>
+    <string name="status_check">Status Check</string>
+    <string name="list">List</string>
+    <string name="map">Map</string>
+    <string name="submit">Submit</string>
+    <string name="add_new_family_member">Add New Family Member</string>
+    <string name="login">Login</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string-array name="Profession">
+        <item>Profession</item>
+        <item>Private Company </item>
+        <item>Government/Public Sector</item>
+        <item>Social/Political Organisation</item>
+        <item>Defense/Civil Sector</item>
+        <item>Education Sector</item>
+        <item>Accounting,banking and finance</item>
+        <item>Medical and healthcare</item>
+        <item>Bussiness/Self Employed</item>
+        <item>Agriculture/Poultry</item>
+        <item>Student</item>
+        <item>Non-working</item>
+        <item>Other</item>
+    </string-array>
+</resources>

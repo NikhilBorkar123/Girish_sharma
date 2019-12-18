@@ -2,10 +2,7 @@ package com.example.abc.girishsharma;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,7 +12,6 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.CursorLoader;
-import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -28,15 +24,14 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.abc.girishsharma.Modal.ApiModel;
 import com.example.abc.girishsharma.Modal.ApiModelData;
-import com.example.abc.girishsharma.Modal.Response;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.util.List;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,11 +40,15 @@ import static android.app.Activity.RESULT_OK;
 
 public class VolunteerFragment extends Fragment {
     View view;
-    private String image,s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
+    RequestBody s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,apid;
+    MultipartBody.Part photo;
+    private String image;
     TextInputLayout Fname, Lname, Email, Phone, Adr1, Adr2, City, State, Pincode;
     Button submit;
     Spinner profession;
     private UserSes userSes;
+    List <ApiModel> data;
+    File img;
 
 
     private ImageView imgView;
@@ -109,19 +108,16 @@ public class VolunteerFragment extends Fragment {
         });
         view.setFocusableInTouchMode(true);
         view.requestFocus();
-        view.setOnKeyListener( new View.OnKeyListener()
-        {
+        view.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey( View v, int keyCode, KeyEvent event )
-            {
-                if( keyCode == KeyEvent.KEYCODE_BACK )
-                {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
                     getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     return true;
                 }
                 return false;
             }
-        } );
+        });
 
 
         return view;
@@ -134,21 +130,7 @@ public class VolunteerFragment extends Fragment {
         try {
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
                 Uri selectedImage = data.getData();
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                assert cursor != null;
-                cursor.moveToFirst();
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String mediaPath = cursor.getString(columnIndex);
-                imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
-                cursor.close();
-                Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
-                imgView.setImageBitmap(bitmapImage);
-
-
-                Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(selectedImage));
-                Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
-                image = ConvertBitmapToString(resizedBitmap);
+                image = getImageFromUri(selectedImage);
 
 
             } else {
@@ -159,17 +141,18 @@ public class VolunteerFragment extends Fragment {
         }
     }
 
-    public static String ConvertBitmapToString(Bitmap bitmap){
-        String encodedImage = "";
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        try {
-            encodedImage= URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return encodedImage;
+    public String getImageFromUri(Uri uri) {
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(getContext(), uri, filePathColumn, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String mediaPath = cursor.getString(columnIndex);
+        imgView.setImageBitmap(BitmapFactory.decodeFile(mediaPath));
+        cursor.close();
+        return mediaPath;
     }
+
 
     private void findViews() {
         imgView = view.findViewById(R.id.image);
@@ -184,50 +167,74 @@ public class VolunteerFragment extends Fragment {
         State = view.findViewById(R.id.state);
         Pincode = view.findViewById(R.id.pincode);
         submit = view.findViewById(R.id.subbtn);
-
     }
 
     private void getData() {
-        s1 = Fname.getEditText().getText().toString();
-        s2 = Lname.getEditText().getText().toString();
-        s3 = profession.getSelectedItem().toString();
-        s4 = Email.getEditText().getText().toString();
-        s5 = Phone.getEditText().getText().toString();
-        s6 = Adr1.getEditText().getText().toString();
-        s7 = Adr2.getEditText().getText().toString();
-        s8 = City.getEditText().getText().toString();
-        s9 = State.getEditText().getText().toString();
-        s10 = Pincode.getEditText().getText().toString();
+        s1 = RequestBody.create(MediaType.parse("text/plain"), Fname.getEditText().getText().toString());
+        s2 = RequestBody.create(MediaType.parse("text/plain"), Lname.getEditText().getText().toString());
+        s3 = RequestBody.create(MediaType.parse("text/plain"), profession.getSelectedItem().toString());
+        s4 = RequestBody.create(MediaType.parse("text/plain"), Email.getEditText().getText().toString());
+        s5 = RequestBody.create(MediaType.parse("text/plain"), Phone.getEditText().getText().toString());
+        s6 = RequestBody.create(MediaType.parse("text/plain"), Adr1.getEditText().getText().toString());
+        s7 = RequestBody.create(MediaType.parse("text/plain"), Adr2.getEditText().getText().toString());
+        s8 = RequestBody.create(MediaType.parse("text/plain"), City.getEditText().getText().toString());
+        s9 = RequestBody.create(MediaType.parse("text/plain"), State.getEditText().getText().toString());
+        s10 = RequestBody.create(MediaType.parse("text/plain"), Pincode.getEditText().getText().toString());
+        apid = RequestBody.create(MediaType.parse("text/plain"), "50");
 
-//        pic = imageString;
+        img = new File(image);
+//        photo = MultipartBody.Part.createFormData("img", img.getName(), RequestBody.create(MediaType.parse("image/*"), img));
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), img);
+        photo = MultipartBody.Part.createFormData("img", img.getName(), requestBody);
+
     }
 
+
     private void sendFormDetails() {
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-//        Call<ApiModelData> call = apiInterface.sendDetails("", "50", s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "50","");
-//        Log.e("call is", "" + call);
-        Call<ApiModelData> call = apiInterface.sendDetails(null,null, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, null,image);
+
+        final ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Log.e("apid", String.valueOf(apid)
+                +String.valueOf(s1)
+                +String.valueOf(s2)
+                +String.valueOf(s3)
+                +String.valueOf(s4)
+                +String.valueOf(s5)
+                +String.valueOf(s6)
+                +String.valueOf(s7)
+                +String.valueOf(s8)
+                +String.valueOf(s9)
+                +String.valueOf(s10)
+                +String.valueOf(photo)
+        );
+
+        Call<ApiModelData> call = apiInterface.sendDetails(null, apid, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, null, photo);
         call.enqueue(new Callback<ApiModelData>() {
             @Override
             public void onResponse(Call<ApiModelData> call, retrofit2.Response<ApiModelData> response) {
+                response.body().setData(data);
+                Log.e("send details res","" + response.body().getData());
 
                 ApiModelData volunteer = response.body();
                 if (volunteer != null) {
                     if (volunteer.getSuccess()) {
-                        Log.v("yes", volunteer.toString());
+                        Log.e("yes", volunteer.toString());
                         Toast.makeText(getContext(), "Sumbit data successfully...", Toast.LENGTH_SHORT).show();
                     } else {
-                        Log.v("no", volunteer.toString());
+                        Log.e("no", volunteer.toString());
                         Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getContext(), "server response...", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     assert volunteer != null;
-                    Log.v("Response error", volunteer.toString());
+                    Log.e("Response error", volunteer.toString());
                 }
             }
+
             @Override
             public void onFailure(Call<ApiModelData> call, Throwable t) {
+                Log.e("send details err","" + t.getMessage());
+                t.printStackTrace();
             }
         });
     }

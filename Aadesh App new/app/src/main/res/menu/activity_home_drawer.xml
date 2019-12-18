@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home_title" />
+        <item
+            android:id="@+id/nav_my_journey"
+            android:icon="@drawable/ic_my_journey"
+            android:title="@string/my_journey" />
+        <item
+            android:id="@+id/nav_my_vision"
+            android:icon="@drawable/ic_my_vision"
+            android:title="@string/my_vision" />
+        <item
+            android:id="@+id/nav_issues"
+            android:icon="@drawable/ic_issues"
+            android:title="@string/issues" />
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@drawable/ic_all_events"
+            android:title="@string/events" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/gallery" />
+        <item
+            android:id="@+id/nav_social"
+            android:icon="@drawable/ic_social"
+            android:title="@string/social" />
+        <item
+            android:id="@+id/nav_appointment"
+            android:icon="@drawable/ic_appointment"
+            android:title="@string/appointments" />
+        <item
+            android:id="@+id/nav_add_volunteer"
+            android:icon="@drawable/ic_add_volunteer"
+            android:title="@string/become_volunteer" />
+        <item
+            android:id="@+id/nav_share_details"
+            android:icon="@drawable/ic_share_details"
+            android:title="@string/share_your_details" />
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/ic_notifications"
+            android:title="@string/notifications" />
+        <item
+            android:id="@+id/nav_myprofile"
+            android:icon="@drawable/ic_myprofile"
+            android:title="@string/my_profile" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/login" />
+    </group>
+
+</menu>
