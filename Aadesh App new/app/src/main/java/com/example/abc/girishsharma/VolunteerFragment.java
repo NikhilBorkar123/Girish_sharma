@@ -42,7 +42,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class VolunteerFragment extends Fragment {
     View view;
-    String mediaPath;
+    String mediaPath,proff;
+    Uri selectedImage;
     VolunteerDatum volunteerDatum = new VolunteerDatum();
     //private String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic;
     RequestBody s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic,volID,appID,cmiId;
@@ -98,6 +99,7 @@ public class VolunteerFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 //set selected spinner value here.......
+                proff=parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -117,7 +119,7 @@ public class VolunteerFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
-                Uri selectedImage = data.getData();
+                selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
                 assert cursor != null;
@@ -140,7 +142,7 @@ public class VolunteerFragment extends Fragment {
         imgView = view.findViewById(R.id.image);
         Fname = view.findViewById(R.id.fname);
         Lname = view.findViewById(R.id.lname);
-        profession = view.findViewById(R.id.spProf);
+//        profession = view.findViewById(R.id.spProf);
         Email = view.findViewById(R.id.email);
         Phone = view.findViewById(R.id.phone);
         Adr1 = view.findViewById(R.id.Address1);
@@ -159,7 +161,7 @@ public class VolunteerFragment extends Fragment {
         volunteerDatum.setLname(Lname.getEditText().getText().toString());
 
         s3 = RequestBody.create(MediaType.parse("text/plain"), profession.getSelectedItem().toString());
-        volunteerDatum.setProfession(profession.getSelectedItem().toString());
+        volunteerDatum.setProfession(proff);
 
         s4 = RequestBody.create(MediaType.parse("text/plain"), Email.getEditText().getText().toString());
         volunteerDatum.setEmail(Email.getEditText().getText().toString());
@@ -204,11 +206,11 @@ public class VolunteerFragment extends Fragment {
 //    }
 
     private void sendFormDetails() {
-        File file= new File(mediaPath);
+        File file= new File(selectedImage.getPath());
         pic = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part image = MultipartBody.Part.createFormData("upload", file.getName(), pic);
+//        MultipartBody.Part image = MultipartBody.Part.createFormData("upload", file.getName(), pic);
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Volunteer> call = apiInterface.sendDetails(volID,appID,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,appID,image);
+        Call<Volunteer> call = apiInterface.sendDetails(volID,appID,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,appID,pic);
         Log.e("call is", "" + call);
         call.enqueue(new Callback<Volunteer>() {
             @Override
@@ -232,7 +234,7 @@ public class VolunteerFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Volunteer> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
     }

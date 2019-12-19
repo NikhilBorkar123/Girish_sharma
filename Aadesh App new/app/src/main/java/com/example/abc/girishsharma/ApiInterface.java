@@ -18,6 +18,24 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 
 public interface ApiInterface {
+    @POST("AppointmentRequest")
+    @FormUrlEncoded
+    Call<Appointment> postAppointments(
+            @Field("PurposeofMeetin") String MeetingPurpose,
+            @Field("Name") String Name,
+            @Field("Email") String Email,
+            @Field("Phone") String Phone,
+            @Field("Addressline1") String Addressline1,
+            @Field("Addressline2") String Addressline2,
+            @Field("City") String City,
+            @Field("State") String State,
+            @Field("Pincode") String Pincode,
+            @Field("ReferenceName") String RefName,
+            @Field("RefPost") String RefPost,
+            @Field("RefPhone") String RefPhone,
+            @Field("profession") String proff
+    );
+
     @GET("frontend/clientquotes/50")
     Call<JsonObject> getClientCode();
 
@@ -37,8 +55,7 @@ public interface ApiInterface {
     Call<VisionExample> getVision();
 
     @Multipart
-    @POST ("becomeAVolunteer")
-
+    @POST("becomeAVolunteer")
     Call<Volunteer> sendDetails(@Part("volunteerID") RequestBody volID,
                                 @Part("AppUserID") RequestBody appID,
                                 @Part("fname") RequestBody fname,
@@ -52,7 +69,9 @@ public interface ApiInterface {
                                 @Part("state") RequestBody state,
                                 @Part("pin") RequestBody pin,
                                 @Part("CMSUserAuthenticationID") RequestBody cmID,
-                                @Part MultipartBody.Part Pic);
+//                                @Part MultipartBody.Part Pic);
+                                @Part("file\"; filename=\"pp.png\" ") RequestBody file
+    );
 
     @POST("registerOrLogin")
     @FormUrlEncoded
