@@ -49,7 +49,7 @@ public class Dataimg {
     private Object appusername;
     @SerializedName("CountYesComment")
     @Expose
-    private String countYesComment;
+    private int countYesComment;
 
     public String getClientGalleryID() {
         return clientGalleryID;
@@ -163,12 +163,16 @@ public class Dataimg {
         this.appusername = appusername;
     }
 
-    public String getCountYesComment() {
+    public int getCountYesComment() {
         return countYesComment;
     }
 
-    public void setCountYesComment(String countYesComment) {
+    public void setCountYesComment(int countYesComment) {
         this.countYesComment = countYesComment;
     }
 
+    public int countlikes(int like){
+        countYesComment+=1;
+        return countYesComment;
+    }
 }

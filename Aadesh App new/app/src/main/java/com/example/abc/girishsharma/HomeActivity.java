@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SamuhikVivah.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SamuhikVivah.OnFragmentInteractionListener, Event_Images.OnFragmentInteractionListener {
     private long backPressedTime;
     String backstackname = getFragmentManager().getClass().getName();
     @Override

@@ -1,5 +1,6 @@
 package com.example.abc.girishsharma;
 
+import com.example.abc.girishsharma.Modal.Comment;
 import com.example.abc.girishsharma.Modal.Example;
 import com.example.abc.girishsharma.Modal.Example2;
 import com.example.abc.girishsharma.Modal.LoginModelData;
@@ -42,6 +43,9 @@ public interface ApiInterface {
     @GET("frontend/events/35/ghj/23/hg/2147483647?show=maps")
     Call<JsonObject> getLatestEvents();
 
+    @GET("frontend/gallery/50")
+    Call<Example> getGalleryList();
+
     @GET("frontend/about/35/abc/2/fgh/22")
     Call<Example2> getAbout();
 
@@ -50,6 +54,9 @@ public interface ApiInterface {
 
     @GET("becomeAVolunteer")
     Call<Volunteer> getDetails();
+
+    @GET("frontend/complaints/comments/2/35/avg/3/abc/3")
+    Call<Comment> getComment();
 
     @GET("frontend/vision/50")
     Call<VisionExample> getVision();
