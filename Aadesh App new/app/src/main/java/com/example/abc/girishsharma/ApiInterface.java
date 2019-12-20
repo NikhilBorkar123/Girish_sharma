@@ -63,7 +63,7 @@ public interface ApiInterface {
 
     @Multipart
     @POST("becomeAVolunteer")
-    Call<Volunteer> sendDetails(@Part("volunteerID") RequestBody volID,
+    Call<JsonObject> sendDetails(@Part("volunteerID") RequestBody volID,
                                 @Part("AppUserID") RequestBody appID,
                                 @Part("fname") RequestBody fname,
                                 @Part("lname") RequestBody lname,
@@ -76,8 +76,8 @@ public interface ApiInterface {
                                 @Part("state") RequestBody state,
                                 @Part("pin") RequestBody pin,
                                 @Part("CMSUserAuthenticationID") RequestBody cmID,
-//                                @Part MultipartBody.Part Pic);
-                                @Part("file\"; filename=\"pp.png\" ") RequestBody file
+                                @Part MultipartBody.Part Pic
+//                                @Part("file\"; filename=\"pp.png\" ") RequestBody file
     );
 
     @POST("registerOrLogin")

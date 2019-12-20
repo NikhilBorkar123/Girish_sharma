@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.abc.girishsharma.Modal.ApiModelData;
 import com.example.abc.girishsharma.Modal.Response;
 import com.example.abc.girishsharma.Modal.Volunteer;
+import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -206,34 +207,42 @@ public class VolunteerFragment extends Fragment {
 //    }
 
     private void sendFormDetails() {
-        File file= new File(selectedImage.getPath());
-        pic = RequestBody.create(MediaType.parse("image/*"), file);
-//        MultipartBody.Part image = MultipartBody.Part.createFormData("upload", file.getName(), pic);
-        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Volunteer> call = apiInterface.sendDetails(volID,appID,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,appID,pic);
-        Log.e("call is", "" + call);
-        call.enqueue(new Callback<Volunteer>() {
-            @Override
-            public void onResponse(Call<Volunteer> call, retrofit2.Response<Volunteer> response) {
+        File file= new File(mediaPath);
+        Log.e("file path is :",mediaPath);
 
-                Volunteer volunteer = response.body();
-                if (volunteer != null) {
-                    if (volunteer.getSuccess()) {
-                        Log.v("yes", volunteer.getData().toString());
-                        Toast.makeText(getContext(), "Sumbit data successfully...", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Log.v("no", volunteer.getData().toString());
-                        Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    assert volunteer != null;
-                    Log.v("Response error", volunteer.toString());
-                }
+        Log.e("isFile", "" + file.isFile());
+
+
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        pic = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("volunteerImage", file.getName(), pic);
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<JsonObject> call = apiInterface.sendDetails(volID,appID,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,appID,body);
+        Log.e("call is", "" + call);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, retrofit2.Response<JsonObject> response) {
+
+                JsonObject volunteer = response.body();
+                Log.e("becomeAVolunteer res", volunteer + "");
+//                if (volunteer != null) {
+//                    if (volunteer.getSuccess()) {
+////                        Log.v("yes", volunteer.getData().toString());
+//                        Toast.makeText(getContext(), "Submit data successfully...", Toast.LENGTH_SHORT).show();
+//                    } else {
+////                        Log.v("no", volunteer.getData().toString());
+//                        Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    assert volunteer != null;
+//                    Log.v("Response error", volunteer.toString());
+//                }
 
             }
 
             @Override
-            public void onFailure(Call<Volunteer> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(getContext(), "failure", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
         });
