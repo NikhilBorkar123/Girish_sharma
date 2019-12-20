@@ -1,5 +1,8 @@
 package com.example.abc.girishsharma;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -43,11 +46,11 @@ import static android.app.Activity.RESULT_OK;
 
 public class VolunteerFragment extends Fragment {
     View view;
-    String mediaPath,proff;
+    String mediaPath, proff;
     Uri selectedImage;
     VolunteerDatum volunteerDatum = new VolunteerDatum();
     //private String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic;
-    RequestBody s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic,volID,appID,cmiId;
+    RequestBody s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, pic, volID, appID, cmiId;
     TextInputLayout Fname, Lname, Email, Phone, Adr1, Adr2, City, State, Pincode;
     Button submit;
     Spinner profession;
@@ -100,7 +103,7 @@ public class VolunteerFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 //set selected spinner value here.......
-                proff=parent.getItemAtPosition(position).toString();
+                proff = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -143,7 +146,6 @@ public class VolunteerFragment extends Fragment {
         imgView = view.findViewById(R.id.image);
         Fname = view.findViewById(R.id.fname);
         Lname = view.findViewById(R.id.lname);
-//        profession = view.findViewById(R.id.spProf);
         Email = view.findViewById(R.id.email);
         Phone = view.findViewById(R.id.phone);
         Adr1 = view.findViewById(R.id.Address1);
@@ -153,6 +155,7 @@ public class VolunteerFragment extends Fragment {
         Pincode = view.findViewById(R.id.pincode);
 
     }
+
     private void getData() {
 
         s1 = RequestBody.create(MediaType.parse("text/plain"), Fname.getEditText().getText().toString());
@@ -189,26 +192,13 @@ public class VolunteerFragment extends Fragment {
         volunteerDatum.setVolunteerID("1");
         appID = RequestBody.create(MediaType.parse("text/plain"), "2");
         volunteerDatum.setAppUserID("2");
-        cmiId = RequestBody.create(MediaType.parse("text/plain"),"10");
+        cmiId = RequestBody.create(MediaType.parse("text/plain"), "10");
         volunteerDatum.setCMSUserAuthenticationID("10");
     }
-//    private void getData() {
-//        s1 = Fname.getEditText().getText().toString();
-//        s2 = Lname.getEditText().getText().toString();
-//        s3 = profession.getSelectedItem().toString();
-//        s4 = Email.getEditText().getText().toString();
-//        s5 = Phone.getEditText().getText().toString();
-//        s6 = Adr1.getEditText().getText().toString();
-//        s7 = Adr2.getEditText().getText().toString();
-//        s8 = City.getEditText().getText().toString();
-//        s9 = State.getEditText().getText().toString();
-//        s10 = Pincode.getEditText().getText().toString();
-////        pic = imageString;
-//    }
 
     private void sendFormDetails() {
-        File file= new File(mediaPath);
-        Log.e("file path is :",mediaPath);
+        File file = new File(mediaPath);
+        Log.e("file path is :", mediaPath);
 
         Log.e("isFile", "" + file.isFile());
 
@@ -217,7 +207,7 @@ public class VolunteerFragment extends Fragment {
         pic = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("volunteerImage", file.getName(), pic);
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<JsonObject> call = apiInterface.sendDetails(volID,appID,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,appID,body);
+        Call<JsonObject> call = apiInterface.sendDetails(volID, appID, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, appID, body);
         Log.e("call is", "" + call);
         call.enqueue(new Callback<JsonObject>() {
             @Override
@@ -225,18 +215,33 @@ public class VolunteerFragment extends Fragment {
 
                 JsonObject volunteer = response.body();
                 Log.e("becomeAVolunteer res", volunteer + "");
-//                if (volunteer != null) {
-//                    if (volunteer.getSuccess()) {
-////                        Log.v("yes", volunteer.getData().toString());
-//                        Toast.makeText(getContext(), "Submit data successfully...", Toast.LENGTH_SHORT).show();
-//                    } else {
-////                        Log.v("no", volunteer.getData().toString());
-//                        Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    assert volunteer != null;
-//                    Log.v("Response error", volunteer.toString());
-//                }
+
+
+                String success_message = volunteer.get("success").getAsString();
+                Log.e("the success message is", success_message + "");
+
+
+                if (volunteer != null) {
+                    if (success_message.equals("true")) {
+//                        Log.v("yes", volunteer.getData().toString());
+                        Toast.makeText(getContext(), "Submit data successfully...", Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Congratulations! You are now a Volunteer!")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                                    }
+                                })
+                                .show();
+                    } else {
+//                        Log.v("no", volunteer.getData().toString());
+                        Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    assert volunteer != null;
+                    Log.v("Response error", volunteer.toString());
+                }
 
             }
 
