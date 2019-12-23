@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Adesh Mahule</string>
+    <string name="app_name">Sunil Mendhe</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Adesh Mahule</string>
-    <string name="nav_header_subtitle">aadeshmahule1998a@gmail.com</string>
+    <string name="nav_header_title">Sunil Mendhe</string>
+    <string name="nav_header_subtitle">sunilmendhe@gmail.com</string>
+    <string name="nav_header_subtitle2">sb.mendhe@sansad.nic.in</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="share_your_details">Share Your Details</string>
@@ -20,7 +21,7 @@
     <string name="notifications_title">Notifications</string>
     <string name="become_volunteer_title">Become Volunteer</string>
     <string name="share_details_title">Share Details</string>
-    <string name="girish_sharma_title">Adesh Mahule</string>
+    <string name="girish_sharma_title">Sunil Mendhe</string>
     <string name="home_title">Home</string>
     <string name="quote1">Live Life to the Fullest</string>
     <string name="sliderdescription">sliderDescription</string>

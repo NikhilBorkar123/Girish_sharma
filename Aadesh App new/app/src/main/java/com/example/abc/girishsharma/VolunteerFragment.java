@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
@@ -36,6 +37,7 @@ import com.google.gson.JsonObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -54,9 +56,10 @@ public class VolunteerFragment extends Fragment {
     TextInputLayout Fname, Lname, Email, Phone, Adr1, Adr2, City, State, Pincode;
     Button submit;
     Spinner profession;
+    AnimationDrawable animationDrawable;
 
 
-    private ImageView imgView;
+    private CircleImageView imgView;
     String[] spinnerValue = {"Profession",
             "Private Company",
             "Government/Public Sector",
@@ -80,6 +83,12 @@ public class VolunteerFragment extends Fragment {
             public void onClick(View v) {
                 getData();
                 sendFormDetails();
+                // loading spinner
+                ImageView loading=view.findViewById(R.id.imageView9);
+                animationDrawable=(AnimationDrawable)loading.getDrawable();
+                loading.setVisibility(View.VISIBLE);
+                animationDrawable.start();
+
             }
         });
         imgView.setOnClickListener(new View.OnClickListener() {
@@ -220,10 +229,12 @@ public class VolunteerFragment extends Fragment {
                 String success_message = volunteer.get("success").getAsString();
                 Log.e("the success message is", success_message + "");
 
-
+                ImageView loading=view.findViewById(R.id.imageView9);
                 if (volunteer != null) {
                     if (success_message.equals("true")) {
 //                        Log.v("yes", volunteer.getData().toString());
+                        animationDrawable.stop();
+                        loading.setVisibility(View.INVISIBLE);
                         Toast.makeText(getContext(), "Submit data successfully...", Toast.LENGTH_SHORT).show();
                         new AlertDialog.Builder(getContext())
                                 .setTitle("Congratulations! You are now a Volunteer!")
@@ -236,6 +247,8 @@ public class VolunteerFragment extends Fragment {
                                 .show();
                     } else {
 //                        Log.v("no", volunteer.getData().toString());
+                        animationDrawable.stop();
+                        loading.setVisibility(View.INVISIBLE);
                         Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();
                     }
                 } else {

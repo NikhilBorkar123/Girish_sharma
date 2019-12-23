@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -159,8 +161,11 @@ public class Event_Images extends Fragment {
                 //liketext.setText(like);
                 //commenttext = (TextView) view.findViewById(R.id.commenttext);
                 //commenttext.setText(comment);
-                textView3 = (TextView) view.findViewById( R.id.title_desc);
-                textView3.setText(description);
+                WebView myWebView;
+                myWebView =  view.findViewById( R.id.title_desc);
+                String encodedHtml= Base64.encodeToString(description.getBytes(),Base64.NO_PADDING);
+                myWebView.loadData(encodedHtml,"text/html", "base64");
+//                textView3.setText(description);
                 imageView1 = (ImageView) view.findViewById( R.id.image1);
                 Glide.with(getContext()).load(imgpath).into(imageView1);
             }

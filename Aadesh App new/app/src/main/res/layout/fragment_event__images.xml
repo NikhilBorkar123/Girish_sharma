@@ -92,17 +92,24 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
+
+                <WebView
                     android:id="@+id/title_desc"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_weight="1"
-                    android:text="Event"
-                    android:textColor="#090808"
-                    android:textSize="15sp" />
+                    android:layout_height="match_parent"
+                    tools:ignore="WebViewLayout" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/title_desc"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="bottom"-->
+<!--                    android:layout_marginLeft="16dp"-->
+<!--                    android:layout_marginRight="16dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Event"-->
+<!--                    android:textColor="#090808"-->
+<!--                    android:textSize="15sp" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

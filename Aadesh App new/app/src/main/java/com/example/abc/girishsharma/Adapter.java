@@ -71,7 +71,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                             bundle.putInt("position",i);
                             Fragment samuhik =new SamuhikVivah();
                             samuhik.setArguments(bundle);
-                            ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
+                            ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,samuhik).commit();
                         }
                     }
                 }

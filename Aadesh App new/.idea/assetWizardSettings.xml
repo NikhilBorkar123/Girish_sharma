@@ -84,11 +84,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\abc\Desktop\aadesh_mahule.jpg" />
-                                      <entry key="foregroundLayerName" value="ic_launcher_foreground" />
-                                      <entry key="outputName" value="ic_aadesh_mahule" />
-                                      <entry key="showGrid" value="true" />
+                                      <entry key="foregroundImage" value="D:\lotus loading images\sunilmendhe2.jpg" />
+                                      <entry key="outputName" value="ic_sunil_mendhe" />
                                     </map>
                                   </option>
                                 </PersistentState>

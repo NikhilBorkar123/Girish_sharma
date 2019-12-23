@@ -7,10 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.example.abc.girishsharma.Modal.Datum;
@@ -48,8 +50,11 @@ public class PersonalProfile extends Fragment {
                 message = response.body().getMessage();
                 data = message.getData();
                 desc = data.get(0).getCMSClientPersonalDescription();
-                textView=view.findViewById(R.id.profiletext);
-                textView.setText(desc);
+                String encodedHtml= Base64.encodeToString(desc.getBytes(),Base64.NO_PADDING);
+                WebView myWebView = view.findViewById(R.id.webview);
+                myWebView.loadData(encodedHtml, "text/html", "base64");
+//                textView=view.findViewById(R.id.profiletext);
+//                textView.setText(desc);
                 Log.e("personal", " " + desc);
             }
 

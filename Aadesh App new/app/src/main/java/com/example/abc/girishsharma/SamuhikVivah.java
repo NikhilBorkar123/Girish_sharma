@@ -4,10 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -103,8 +105,10 @@ public class SamuhikVivah extends Fragment {
                 textView1.setText(title);
                 textView2 = (TextView) view.findViewById(R.id.event1_subheader);
                 textView2.setText(date);
-                textView3 = (TextView) view.findViewById(R.id.eventdesc);
-                textView3.setText(description);
+                String encodedHtml= Base64.encodeToString(description.getBytes(),Base64.NO_PADDING);
+                WebView webView;
+                webView = view.findViewById(R.id.eventdesc);
+                webView.loadData(encodedHtml,"text/html", "base64");
                 imageView1 = (ImageView) view.findViewById(R.id.appCompatImageView);
                 Picasso.with(getContext()).load(imgpath).into(imageView1);
             }
