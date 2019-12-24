@@ -1,5 +1,6 @@
 package com.example.abc.girishsharma;
 
+import com.example.abc.girishsharma.Modal.AppointmentData;
 import com.example.abc.girishsharma.Modal.Comment;
 import com.example.abc.girishsharma.Modal.Example;
 import com.example.abc.girishsharma.Modal.Example2;
@@ -84,5 +85,23 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<LoginModelData> getLogin(@Field("CMSUsername") String name, @Field("CMSPassword") String pass);
 
+    @POST("AppointmentRequest")
+    @FormUrlEncoded
+    Call<AppointmentData> sendAppDetails(@Field("appointmentID") String appID,
+                                         @Field("AppUserID") String userID,
+                                         @Field("name") String name,
+                                         @Field("profession") String prof,
+                                         @Field("email") String email,
+                                         @Field("phone") String phone,
+                                         @Field("address1") String adr1,
+                                         @Field("address2") String adr2,
+                                         @Field("city") String city,
+                                         @Field("state") String state,
+                                         @Field("pin") String pin,
+                                         @Field("purpose") String purpose,
+                                         @Field("referenceName") String rname,
+                                         @Field("referencePost") String rpost,
+                                         @Field("referencePhone") String rphone,
+                                         @Field("CMSUserAuthenticationID") String cmsID);
 
 }
