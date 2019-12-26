@@ -51,10 +51,10 @@ public class VolunteerFragment extends Fragment {
     String mediaPath, proff;
     Uri selectedImage;
     VolunteerDatum volunteerDatum = new VolunteerDatum();
-    //private String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic;
+//    private String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic;
     RequestBody s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, pic, volID, appID, cmiId;
     TextInputLayout Fname, Lname, Email, Phone, Adr1, Adr2, City, State, Pincode;
-    Button submit;
+//    Button submit;
     Spinner profession;
     AnimationDrawable animationDrawable;
 
