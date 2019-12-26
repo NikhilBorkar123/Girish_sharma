@@ -77,6 +77,9 @@
     <string name="login">Login</string>
 
     <string name="title_activity_maps">Map</string>
+    <string name="address_line_1">Address Line 1</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="date_of_appointment">Date Of Appointment</string>
     <string-array name="Profession">
         <item>Profession</item>
         <item>Private Company </item>

@@ -44,8 +44,7 @@
                 android:ems="10"
                 android:hint="@string/first_name"
                 android:inputType="textPersonName|textAutoComplete"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etMidName"
@@ -58,8 +57,7 @@
                 android:ems="10"
                 android:hint="@string/middle_name"
                 android:inputType="textPersonName"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etLastName"
@@ -72,38 +70,34 @@
                 android:ems="10"
                 android:hint="@string/last_name"
                 android:inputType="textPersonName"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="359dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:autoLink="web|email"
-                android:ems="10"
-                android:hint="@string/email"
-                android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etPhoneNo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:autoLink="phone"
-                android:ems="10"
-                android:hint="@string/phone_no"
-                android:importantForAutofill="no"
-                android:inputType="phone"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                <Spinner
+                    android:id="@+id/spGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="23dp"
+                    android:orientation="horizontal"
+                    android:prompt="@string/gender"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/birthday"
@@ -118,8 +112,7 @@
                 android:focusable="false"
                 android:hint="@string/date_of_birth"
                 android:inputType="date"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etDOA"
@@ -131,10 +124,9 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:focusable="false"
-                android:hint="Date Of Appointment"
+                android:hint="@string/date_of_appointment"
                 android:inputType="date"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="359dp"
@@ -142,59 +134,13 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvGender"
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/gender"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
 
                 <Spinner
-                    android:id="@+id/spGender"
+                    android:id="@+id/spBloodGrp"
                     android:layout_width="match_parent"
                     android:layout_height="23dp"
-                    android:orientation="horizontal"
-                    android:prompt="@string/gender"
+                    android:prompt="@string/bloodgrp"
                     android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="359dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvProf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/profession"
-                    android:textAlignment="textStart"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
-
-                <Spinner
-                    android:id="@+id/spProf"
-                    android:layout_width="match_parent"
-                    android:layout_height="23dp"
-                    android:prompt="@string/profession"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="359dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tvBloodGrp"
@@ -206,14 +152,61 @@
                     android:textStyle="bold"
                     android:visibility="visible" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="359dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <Spinner
-                    android:id="@+id/spBloodGrp"
+                    android:id="@+id/spProf"
                     android:layout_width="match_parent"
                     android:layout_height="23dp"
-                    android:prompt="@string/bloodgrp"
+                    android:prompt="@string/profession"
                     android:spinnerMode="dropdown" />
 
+                <TextView
+                    android:id="@+id/tvProf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profession"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/etPhoneNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:autoLink="phone"
+                android:ems="10"
+                android:hint="@string/phone_no"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:autoLink="web|email"
+                android:ems="10"
+                android:hint="@string/email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etAddress"
@@ -223,11 +216,23 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:ems="10"
-                android:hint="@string/postal_address"
+                android:hint="@string/address_line_1"
                 android:importantForAutofill="no"
                 android:inputType="textPostalAddress"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etAddress2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/address_line_2"
+                android:importantForAutofill="no"
+                android:inputType="textPostalAddress"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etcity"
@@ -240,8 +245,7 @@
                 android:ems="10"
                 android:hint="@string/city"
                 android:inputType=""
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etState"
@@ -254,8 +258,7 @@
                 android:ems="10"
                 android:hint="@string/state"
                 android:inputType=""
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etPincode"
@@ -268,8 +271,7 @@
                 android:ems="10"
                 android:hint="@string/pin_code"
                 android:inputType="number"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvFMember"
@@ -282,8 +284,7 @@
                 android:ems="10"
                 android:text="@string/family_member_1"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etName"
@@ -296,8 +297,7 @@
                 android:ems="10"
                 android:hint="@string/name"
                 android:inputType="textPersonName|textAutoComplete"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/etRelation"
@@ -310,8 +310,7 @@
                 android:ems="10"
                 android:hint="@string/relation"
                 android:inputType=""
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/birthday2"
@@ -326,8 +325,7 @@
                 android:focusable="false"
                 android:hint="@string/string_date_of_birth"
                 android:inputType="date"
-                android:textStyle="bold"
-                tools:targetApi="o" />
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnAdd"
@@ -335,26 +333,22 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="@string/add_new_family_member"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="20dp"
-                android:gravity="center"
                 android:background="@color/colorPrimary"
+                android:gravity="center"
                 android:text="@string/submit"
                 android:textColor="#FCFBFB"
-                android:textSize="18sp"
-                tools:targetApi="lollipop" />
-
+                android:textSize="18sp" />
 
 
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </android.support.constraint.ConstraintLayout>

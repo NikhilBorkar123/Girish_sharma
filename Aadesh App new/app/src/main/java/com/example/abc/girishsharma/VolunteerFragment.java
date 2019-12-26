@@ -215,6 +215,8 @@ public class VolunteerFragment extends Fragment {
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         pic = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("volunteerImage", file.getName(), pic);
+
+
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<JsonObject> call = apiInterface.sendDetails(volID, appID, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, appID, body);
         Log.e("call is", "" + call);
@@ -232,7 +234,6 @@ public class VolunteerFragment extends Fragment {
                 ImageView loading=view.findViewById(R.id.imageView9);
                 if (volunteer != null) {
                     if (success_message.equals("true")) {
-//                        Log.v("yes", volunteer.getData().toString());
                         animationDrawable.stop();
                         loading.setVisibility(View.INVISIBLE);
                         Toast.makeText(getContext(), "Submit data successfully...", Toast.LENGTH_SHORT).show();
@@ -246,7 +247,6 @@ public class VolunteerFragment extends Fragment {
                                 })
                                 .show();
                     } else {
-//                        Log.v("no", volunteer.getData().toString());
                         animationDrawable.stop();
                         loading.setVisibility(View.INVISIBLE);
                         Toast.makeText(getContext(), "Something went wrong in submitting...", Toast.LENGTH_SHORT).show();

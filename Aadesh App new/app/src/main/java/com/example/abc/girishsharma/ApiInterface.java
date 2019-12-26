@@ -1,5 +1,6 @@
 package com.example.abc.girishsharma;
 
+import com.example.abc.girishsharma.Modal.AppointmentData;
 import com.example.abc.girishsharma.Modal.Comment;
 import com.example.abc.girishsharma.Modal.Example;
 import com.example.abc.girishsharma.Modal.Example2;
@@ -64,20 +65,66 @@ public interface ApiInterface {
     @Multipart
     @POST("becomeAVolunteer")
     Call<JsonObject> sendDetails(@Part("volunteerID") RequestBody volID,
-                                @Part("AppUserID") RequestBody appID,
-                                @Part("fname") RequestBody fname,
-                                @Part("lname") RequestBody lname,
-                                @Part("profession") RequestBody prof,
-                                @Part("email") RequestBody email,
-                                @Part("phone") RequestBody phone,
-                                @Part("address1") RequestBody adr1,
-                                @Part("address2") RequestBody adr2,
-                                @Part("city") RequestBody city,
-                                @Part("state") RequestBody state,
-                                @Part("pin") RequestBody pin,
-                                @Part("CMSUserAuthenticationID") RequestBody cmID,
-                                @Part MultipartBody.Part Pic
+                                 @Part("AppUserID") RequestBody appID,
+                                 @Part("fname") RequestBody fname,
+                                 @Part("lname") RequestBody lname,
+                                 @Part("profession") RequestBody prof,
+                                 @Part("email") RequestBody email,
+                                 @Part("phone") RequestBody phone,
+                                 @Part("address1") RequestBody adr1,
+                                 @Part("address2") RequestBody adr2,
+                                 @Part("city") RequestBody city,
+                                 @Part("state") RequestBody state,
+                                 @Part("pin") RequestBody pin,
+                                 @Part("CMSUserAuthenticationID") RequestBody cmID,
+                                 @Part MultipartBody.Part Pic
 //                                @Part("file\"; filename=\"pp.png\" ") RequestBody file
+    );
+
+    @FormUrlEncoded // annotation used in POST type requests
+    @POST("AddUpdateUserDetails")
+    Call<JsonObject> shareDetails(
+            @Field("AppUserID") String appUserId,
+            @Field("Fname") String FirstName,
+            @Field("Lname") String LastName,
+            @Field("Gender") String gender,
+            @Field("BloodGroup") String bloodGroup,
+            @Field("DOB") String Dob,
+            @Field("DOA") String Doa,
+            @Field("Profession") String profession,
+            @Field("Phone") String phoneNo,
+            @Field("email") String email,
+            @Field("address1") String address,
+            @Field("address2") String address2,
+            @Field("city") String city,
+            @Field("pin") String pin,
+            @Field("state") String state,
+            @Field("CMSUserAuthenticationID") String CMSId,
+            @Field("members") String members,
+            @Field("Mname") String mname,
+            @Field("Name") String name,
+            @Field("memberid") String memberId,
+            @Field("Relation") String relation
+    );
+
+    @POST("AppointmentRequest")
+    @FormUrlEncoded
+    Call<AppointmentData> sendAppDetails(@Field("appointmentID") String appID,
+                                         @Field("AppUserID") String userID,
+                                         @Field("name") String name,
+                                         @Field("profession") String prof,
+                                         @Field("email") String email,
+                                         @Field("phone") String phone,
+                                         @Field("address1") String adr1,
+                                         @Field("address2") String adr2,
+                                         @Field("city") String city,
+                                         @Field("state") String state,
+                                         @Field("pin") String pin,
+                                         @Field("purpose") String purpose,
+                                         @Field("referenceName") String rname,
+                                         @Field("referencePost") String rpost,
+                                         @Field("referencePhone") String rphone,
+                                         @Field("CMSUserAuthenticationID") String cmsID
     );
 
     @POST("registerOrLogin")
