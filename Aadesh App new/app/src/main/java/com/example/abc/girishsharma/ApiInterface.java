@@ -20,23 +20,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 
 public interface ApiInterface {
-    @POST("AppointmentRequest")
-    @FormUrlEncoded
-    Call<Appointment> postAppointments(
-            @Field("PurposeofMeetin") String MeetingPurpose,
-            @Field("Name") String Name,
-            @Field("Email") String Email,
-            @Field("Phone") String Phone,
-            @Field("Addressline1") String Addressline1,
-            @Field("Addressline2") String Addressline2,
-            @Field("City") String City,
-            @Field("State") String State,
-            @Field("Pincode") String Pincode,
-            @Field("ReferenceName") String RefName,
-            @Field("RefPost") String RefPost,
-            @Field("RefPhone") String RefPhone,
-            @Field("profession") String proff
-    );
 
     @GET("frontend/clientquotes/50")
     Call<JsonObject> getClientCode();
@@ -107,26 +90,6 @@ public interface ApiInterface {
             @Field("Relation") String relation
     );
 
-    @POST("AppointmentRequest")
-    @FormUrlEncoded
-    Call<AppointmentData> sendAppDetails(@Field("appointmentID") String appID,
-                                         @Field("AppUserID") String userID,
-                                         @Field("name") String name,
-                                         @Field("profession") String prof,
-                                         @Field("email") String email,
-                                         @Field("phone") String phone,
-                                         @Field("address1") String adr1,
-                                         @Field("address2") String adr2,
-                                         @Field("city") String city,
-                                         @Field("state") String state,
-                                         @Field("pin") String pin,
-                                         @Field("purpose") String purpose,
-                                         @Field("referenceName") String rname,
-                                         @Field("referencePost") String rpost,
-                                         @Field("referencePhone") String rphone,
-                                         @Field("CMSUserAuthenticationID") String cmsID
-    );
-
     @POST("registerOrLogin")
     @FormUrlEncoded
     Call<LoginModelData> getLogin(@Field("CMSUsername") String name, @Field("CMSPassword") String pass);
@@ -148,6 +111,7 @@ public interface ApiInterface {
                                          @Field("referenceName") String rname,
                                          @Field("referencePost") String rpost,
                                          @Field("referencePhone") String rphone,
-                                         @Field("CMSUserAuthenticationID") String cmsID);
+                                         @Field("CMSUserAuthenticationID") String cmsID
+    );
 
 }
