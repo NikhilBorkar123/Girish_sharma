@@ -45,18 +45,6 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
-//        carouselPicker=(CarouselPicker)view.findViewById(R.id.event_carousel);
-//        List<CarouselPicker.PickerItem> itemImages= new ArrayList<>();
-//        itemImages.add(new CarouselPicker.DrawableItem(R.drawable.background));
-//        itemImages.add(new CarouselPicker.DrawableItem(R.drawable.background2));
-//        itemImages.add(new CarouselPicker.DrawableItem(R.drawable.background3));
-//        itemImages.add(new CarouselPicker.DrawableItem(R.drawable.download4));
-//        itemImages.add(new CarouselPicker.DrawableItem(R.drawable.download2));
-//        itemImages.add(new CarouselPicker.DrawableItem(R.drawable.download3));
-//        CarouselPicker.CarouselViewAdapter imageAdapter =new CarouselPicker.CarouselViewAdapter(getActivity(),itemImages,0);
-//        carouselPicker.setAdapter(imageAdapter);
-
-
         viewPager = view.findViewById(R.id.viewpager);
 
         myCustomPagerAdapter = new MyCustomPagerAdapter(getActivity(), images);
@@ -76,9 +64,9 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 message = response.body().getMessage();
                 imgData = message.getDataimg();
                 Log.e("image path", String.valueOf(imgData));
-                int size=imgData.size();
-                if(size>8){
-                    size=8;
+                int size = imgData.size();
+                if (size > 8) {
+                    size = 8;
                 }
                 for (int i = 0; i < size; i++) {
                     Log.e("Image" + " " + i + "path: is", "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
@@ -111,16 +99,6 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 Log.e("image path error", t.toString());
             }
         });
-
-
-//        final com.ldealmei.libs.carousel.CarouselPicker carouselPicker1= (com.ldealmei.libs.carousel.CarouselPicker) view.findViewById(R.id.carousel_picker);
-//        List<ItemPicker> items = new ArrayList<>();
-//        items.add(new ItemPicker(R.drawable.background,"Event 1"));
-//        items.add(new ItemPicker(R.drawable.background,"Event 2"));
-//        items.add(new ItemPicker(R.drawable.background,"Event 3"));
-//        carouselPicker1.addList(items).build(getActivity());
-
-
         Call<JsonObject> call = apiService.getClientCode();
         Log.e("call is", "" + call);
         call.enqueue(new Callback<JsonObject>() {
@@ -160,6 +138,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 Log.e("clientCode error", t.toString());
             }
         });
+        
 
 
         return view;

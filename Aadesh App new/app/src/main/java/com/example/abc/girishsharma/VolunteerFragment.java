@@ -19,6 +19,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,8 +122,6 @@ public class VolunteerFragment extends Fragment {
 
             }
         });
-
-
         return view;
     }
 

@@ -68,25 +68,25 @@ public class MyCustomPagerAdapter extends PagerAdapter{
                     bundle.putInt("position",0);
                     Fragment samuhik =new SamuhikVivah();
                     samuhik.setArguments(bundle);
-                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
+                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,samuhik).commit();
                 }else if (position==1){
                     Bundle bundle=new Bundle();
                     bundle.putInt("position",1);
                     Fragment samuhik =new SamuhikVivah();
                     samuhik.setArguments(bundle);
-                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
+                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,samuhik).commit();
                 }else if (position==2){
                     Bundle bundle=new Bundle();
                     bundle.putInt("position",2);
                     Fragment samuhik =new SamuhikVivah();
                     samuhik.setArguments(bundle);
-                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
+                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,samuhik).commit();
                 }else if (position==3){
                     Bundle bundle=new Bundle();
                     bundle.putInt("position",3);
                     Fragment samuhik =new SamuhikVivah();
                     samuhik.setArguments(bundle);
-                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,samuhik).commit();
+                    ((HomeActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,samuhik).commit();
                 }
 
             }

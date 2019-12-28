@@ -1,21 +1,27 @@
 package com.example.abc.girishsharma;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SamuhikVivah.OnFragmentInteractionListener, Event_Images.OnFragmentInteractionListener {
     private long backPressedTime;
     String backstackname = getFragmentManager().getClass().getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,7 +49,7 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (backstackname.equals("0")){
+        } else if (backstackname.equals("0")) {
             if (backPressedTime + 2000 > System.currentTimeMillis()) {
                 super.onBackPressed();
                 return;
@@ -51,10 +57,11 @@ public class HomeActivity extends AppCompatActivity
                 Toast.makeText(this, "Press back Again to Exit !!", Toast.LENGTH_SHORT).show();
             }
             backPressedTime = System.currentTimeMillis();
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,7 +90,6 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         Boolean fragmentpooped = getSupportFragmentManager().popBackStackImmediate(backstackname, 0);
         if (!fragmentpooped) {
             if (id == R.id.nav_home) {
