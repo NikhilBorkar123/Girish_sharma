@@ -5,11 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -23,6 +26,7 @@ import com.google.gson.JsonObject;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import in.goodiebag.carouselpicker.CarouselPicker;
 import retrofit2.Call;
@@ -30,7 +34,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
-
+    RecyclerAdapterHome recyclerAdapterHome;
+    RecyclerView recyclerView;
     CarouselPicker carouselPicker;
     ViewPager viewPager;
     SliderLayout sliderLayout;
@@ -45,10 +50,11 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
-        viewPager = view.findViewById(R.id.viewpager);
-
+//        viewPager = view.findViewById(R.id.viewpager);
+        getData();
+        recyclerView=view.findViewById(R.id.viewpager);
         myCustomPagerAdapter = new MyCustomPagerAdapter(getActivity(), images);
-        viewPager.setAdapter(myCustomPagerAdapter);
+//        viewPager.setAdapter(myCustomPagerAdapter);
 
         Hash_file_maps = new HashMap<String, String>();
 
@@ -73,6 +79,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                     Hash_file_maps.put("Image" + " " + i, "http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
 
                 }
+                Log.e("HashMap",""+Hash_file_maps);
                 for (String name : Hash_file_maps.keySet()) {
 
                     TextSliderView textSliderView = new TextSliderView(getContext());
@@ -99,6 +106,16 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 Log.e("image path error", t.toString());
             }
         });
+
+
+//        final com.ldealmei.libs.carousel.CarouselPicker carouselPicker1= (com.ldealmei.libs.carousel.CarouselPicker) view.findViewById(R.id.carousel_picker);
+//        List<ItemPicker> items = new ArrayList<>();
+//        items.add(new ItemPicker(R.drawable.background,"Event 1"));
+//        items.add(new ItemPicker(R.drawable.background,"Event 2"));
+//        items.add(new ItemPicker(R.drawable.background,"Event 3"));
+//        carouselPicker1.addList(items).build(getActivity());
+
+
         Call<JsonObject> call = apiService.getClientCode();
         Log.e("call is", "" + call);
         call.enqueue(new Callback<JsonObject>() {
@@ -142,6 +159,30 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
 
         return view;
+    }
+    private void getData() {
+        ApiInterface apiInterface = ApiClient.getClient().create( ApiInterface.class);
+        Call<Example> call3 = apiInterface.getGalleryList();
+        Log.e("call3 is", "" + call3);
+        call3.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call3, Response<Example> response) {
+                assert response.body() != null;
+                message = response.body().getMessage();
+                imgData = message.getDataimg();
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                recyclerAdapterHome = new RecyclerAdapterHome(getActivity(), imgData);
+                recyclerView.setAdapter(recyclerAdapterHome);
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+                Log.e("getData", t.toString());
+                Toast.makeText(getActivity(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

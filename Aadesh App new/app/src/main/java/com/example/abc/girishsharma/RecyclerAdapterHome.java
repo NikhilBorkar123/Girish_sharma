@@ -19,39 +19,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RecyclerAdapterG extends RecyclerView.Adapter<RecyclerAdapterG.MyViewHolder> {
+public class RecyclerAdapterHome extends RecyclerView.Adapter<RecyclerAdapterHome.MyViewHolder> {
     List<Dataimg> imgData;
     private Context context;
 
-    public RecyclerAdapterG(Context ctx, List<Dataimg> imgData) {
+    public RecyclerAdapterHome(Context ctx, List<Dataimg> imgData) {
 
         this.context = ctx;
         this.imgData = imgData;
     }
 
     @Override
-    public RecyclerAdapterG.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerAdapterHome.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.card_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_list2, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerAdapterG.MyViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerAdapterHome.MyViewHolder holder, int position) {
         holder.ename.setText(imgData.get(position).getClientMediaTitle());
 
         List<String> tokens = new ArrayList<>();
         for (int i = 0; i < imgData.size(); i++) {
-            tokens.add("http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
+            if (i < 4) {
+                tokens.add("http://iamapp.incubatorsdwnmt.com/docs/clientmgallery/" + imgData.get(i).getClientMediaPath());
+            }
+
         }
         Glide.with(context).load(tokens.get(position)).into(holder.img1);
     }
 
     @Override
     public int getItemCount() {
-        return imgData.size();
+        return 4;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -62,8 +65,8 @@ public class RecyclerAdapterG extends RecyclerView.Adapter<RecyclerAdapterG.MyVi
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            ename = itemView.findViewById( R.id.texttitle);
-            img1 = itemView.findViewById( R.id.images);
+            ename = itemView.findViewById(R.id.texttitle);
+            img1 = itemView.findViewById(R.id.images);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -74,7 +77,7 @@ public class RecyclerAdapterG extends RecyclerView.Adapter<RecyclerAdapterG.MyVi
                             bundle.putInt("position", i);
                             Fragment event_images = new Event_Images();
                             event_images.setArguments(bundle);
-                            ((HomeActivity) context).getSupportFragmentManager().beginTransaction().replace( R.id.fragment_container, event_images).commit();
+                            ((HomeActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, event_images).commit();
                         }
                     }
                 }

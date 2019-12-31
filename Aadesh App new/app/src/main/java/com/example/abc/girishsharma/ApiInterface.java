@@ -114,4 +114,27 @@ public interface ApiInterface {
                                          @Field("CMSUserAuthenticationID") String cmsID
     );
 
+    @POST("AddUpdateComplaint")
+    @FormUrlEncoded
+    Call<JsonObject> postIssue(
+            @Field("AppUserID") String appID,
+            @Field("ClientComplaintAndSuggestionID") String complaintSuggestionId,
+            @Field("CMSUserAuthenticationID") String cmsID,
+            @Field("ClientDepartmentID") String clientDepartmentID,
+            @Field("ComplaintLat") String complaintLat,
+            @Field("ComplaintLong") String complaintLong,
+            @Field("Title") String title,
+            @Field("Description") String desc,
+            @Field("Address") String address,
+            @Field("DepartmentName") String deptName
+    );
+
+    @POST("LoginUser")
+    @FormUrlEncoded
+    Call<LoginModelData> sendLogin(@Field("MobileOrEmail") String uname,
+                                   @Field("Password") String pass,
+                                   @Field("CMSUserAuthenticationID") String cmsID
+    );
+
+
 }

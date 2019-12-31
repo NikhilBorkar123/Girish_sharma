@@ -34,10 +34,10 @@ public class MyJourneyFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_my_journey, container, false);
         tabLayout = view.findViewById(R.id.tabLayout);
-        frameLayout = view.findViewById(R.id.frameLayout);
+        frameLayout = view.findViewById(R.id.frameLayout1);
         final Fragment[] fragment = new Fragment[1];
         fragment[0] = new PersonalProfile();
-        (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment[0]).commit();
+        (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1, fragment[0]).commit();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -52,13 +52,13 @@ public class MyJourneyFragment extends Fragment {
 
                 if (position == 0) {
                     fragment[0] = new PersonalProfile();
-                    (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment[0]).commit();
+                    (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1, fragment[0]).commit();
                 } else if (position == 1) {
                     fragment[0] = new PoliticalProfile();
-                    (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment[0]).commit();
+                    (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1, fragment[0]).commit();
                 } else {
                     fragment[0] = new SocialFragment();
-                    (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment[0]).commit();
+                    (getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout1, fragment[0]).commit();
                 }
 
 

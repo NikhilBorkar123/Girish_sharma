@@ -39,7 +39,7 @@ import static com.basgeekball.awesomevalidation.ValidationStyle.COLORATION;
 
 public class ShareDetailsFragment extends Fragment implements View.OnClickListener {
     View view;
-    EditText UserId, firstname, lastname, email, middlename, phoneno, DOB, DOA, DOB2, address, address2, city, pincode, state,name,memberId,relation;
+    EditText UserId, firstname, lastname, email, middlename, phoneno, DOB, DOA, DOB2, address, address2, city, pincode, state, name, memberId, relation;
     Button submit;
     String gen, prof, blood, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21;
     DatePickerDialog datePickerDialog1, datePickerDialog2, datePickerDialog3;
@@ -52,7 +52,7 @@ public class ShareDetailsFragment extends Fragment implements View.OnClickListen
         view = inflater.inflate(R.layout.fragment_share_details, container, false);
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         AwesomeValidation mAwesomeValidation = new AwesomeValidation(COLORATION);
-        mAwesomeValidation.setColor( Color.YELLOW);
+        mAwesomeValidation.setColor(Color.YELLOW);
         //Bind views with their ids
         findViews();
         //Set listeners of views
@@ -183,12 +183,13 @@ public class ShareDetailsFragment extends Fragment implements View.OnClickListen
         pincode = view.findViewById(R.id.etPincode);
         state = view.findViewById(R.id.etState);
         middlename = view.findViewById(R.id.etMidName);
-        name=view.findViewById(R.id.etName);
-        DOB2=view.findViewById(R.id.birthday2);
-        relation=view.findViewById(R.id.etRelation);
+        name = view.findViewById(R.id.etName);
+        DOB2 = view.findViewById(R.id.birthday2);
+        relation = view.findViewById(R.id.etRelation);
         setValidation();
     }
-    private void getData(){
+
+    private void getData() {
         s1 = "50";
         s2 = firstname.getText().toString();
         s3 = lastname.getText().toString();
@@ -201,17 +202,18 @@ public class ShareDetailsFragment extends Fragment implements View.OnClickListen
         s13 = city.getText().toString();
         s14 = pincode.getText().toString();
         s15 = state.getText().toString();
-        s16="50";
-        s17="";
+        s16 = "50";
+        s17 = "";
         s18 = middlename.getText().toString();
-        s19=name.getText().toString();
-        s20="1";
-        s21=relation.getText().toString();
+        s19 = name.getText().toString();
+        s20 = "1";
+        s21 = relation.getText().toString();
         setValidation();
     }
+
     private void submitForm() {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<JsonObject> call = apiInterface.shareDetails(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21);
+        Call<JsonObject> call = apiInterface.shareDetails(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21);
         Log.e("share ur details call:", "" + call);
         call.enqueue(new Callback<JsonObject>() {
             @Override

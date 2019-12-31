@@ -25,14 +25,17 @@ import retrofit2.Response;
 
 public class LoginFragment extends Fragment {
     View view;
-    TextInputLayout CMSuser,CMSpass;
+    TextInputLayout CMSuser, CMSpass;
     Button log;
     LoginModel loginModel;
+    String checkSuccess;
+    String cmsID;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_login,container,false);
-
+        view = inflater.inflate(R.layout.fragment_login, container, false);
+        cmsID = getString(R.string.CMSUserAuthenticationID);
         CMSuser = view.findViewById(R.id.uname);
         CMSpass = view.findViewById(R.id.upass);
         log = view.findViewById(R.id.login);
@@ -41,20 +44,21 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 String Name = CMSuser.getEditText().getText().toString();
                 String Pass = CMSpass.getEditText().getText().toString();
-                if(Login(Name,Pass)){
-                    performLogin(Name,Pass);
+                Log.e("Error", "USER AND PASS" + Name + Pass);
+                if (Login(Name, Pass)) {
+                    performLogin(Name, Pass, cmsID);
                 }
             }
         });
         return view;
     }
 
-    private boolean Login(String name, String pass){
-        if(name == null || name.trim().length() == 0){
+    private boolean Login(String name, String pass) {
+        if (name == null || name.trim().length() == 0) {
             Toast.makeText(getContext(), "Username is required", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(pass == null || pass.trim().length() == 0){
+        if (pass == null || pass.trim().length() == 0) {
             Toast.makeText(getContext(), "Password is required", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -62,23 +66,36 @@ public class LoginFragment extends Fragment {
     }
 
 
-    private void performLogin(String name,String pass){
+    private void performLogin(String name, String pass, String cmID) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<LoginModelData> call = apiInterface.getLogin(name,pass);
+        Call<LoginModelData> call = apiInterface.sendLogin(name, pass, cmID);
         call.enqueue(new Callback<LoginModelData>() {
             @Override
             public void onResponse(Call<LoginModelData> call, Response<LoginModelData> response) {
-                    loginModel = response.body().getData();
-                    if (loginModel.equals("true")) {
-                        Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getActivity(),HomeFragment.class));
-                    } else {
-                        Toast.makeText(getContext(), "Incorrect username and password", Toast.LENGTH_SHORT).show();
-                    }
+                loginModel = response.body().getData();
+                checkSuccess = response.body().getSuccess().toString();
+                Log.e("Err check", checkSuccess);
+                if (checkSuccess.equals("true")) {
+                    Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+                    //User data...
+//                    String AppUserID = loginModel.getAppUserID();
+//                    String AppUserFirstname = loginModel.getAppUserFirstname();
+//                    String AppUserlastname = loginModel.getAppUserLastname();
+//                    String AppUserEmail = loginModel.getAppUserEmail();
+//                    String AppUserPhone = loginModel.getApUserPhoneNumber();
+//                    String AppUserProfile = loginModel.getAppUserProfileImage();
+//                    String verified = loginModel.getIsAccountVerified();
+
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                } else {
+                    Toast.makeText(getContext(), "Incorrect username and password", Toast.LENGTH_SHORT).show();
+                }
             }
+
             @Override
             public void onFailure(Call<LoginModelData> call, Throwable t) {
-                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "failure", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
             }
         });
 

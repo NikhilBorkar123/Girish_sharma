@@ -4,114 +4,81 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginModel {
-    @SerializedName("CMSUserAuthenticationID")
+    @SerializedName("AppUserID")
     @Expose
-    private String cMSUserAuthenticationID;
-    @SerializedName("CMSUsername")
+    private String appUserID;
+    @SerializedName("AppUserFirstname")
     @Expose
-    private String cMSUsername;
-    @SerializedName("CMSPassword")
+    private String appUserFirstname;
+    @SerializedName("AppUserLastname")
     @Expose
-    private String cMSPassword;
-    @SerializedName("deviceToken")
+    private String appUserLastname;
+    @SerializedName("AppUserEmail")
     @Expose
-    private Object deviceToken;
-    @SerializedName("AppType")
+    private String appUserEmail;
+    @SerializedName("ApUserPhoneNumber")
     @Expose
-    private Object appType;
-    @SerializedName("platform")
+    private String apUserPhoneNumber;
+    @SerializedName("AppUserProfileImage")
     @Expose
-    private Object platform;
-    @SerializedName("AppceleratorUserID")
+    private String appUserProfileImage;
+    @SerializedName("IsAccountVerified")
     @Expose
-    private Object appceleratorUserID;
-    @SerializedName("CMSUserDisplayname")
-    @Expose
-    private String cMSUserDisplayname;
-    @SerializedName("LoginType")
-    @Expose
-    private Object loginType;
-    @SerializedName("CMSUserParentID")
-    @Expose
-    private String cMSUserParentID;
+    private String isAccountVerified;
 
-    public String getCMSUserAuthenticationID() {
-        return cMSUserAuthenticationID;
+    public String getAppUserID() {
+        return appUserID;
     }
 
-    public void setCMSUserAuthenticationID(String cMSUserAuthenticationID) {
-        this.cMSUserAuthenticationID = cMSUserAuthenticationID;
+    public void setAppUserID(String appUserID) {
+        this.appUserID = appUserID;
     }
 
-    public String getCMSUsername() {
-        return cMSUsername;
+    public String getAppUserFirstname() {
+        return appUserFirstname;
     }
 
-    public void setCMSUsername(String cMSUsername) {
-        this.cMSUsername = cMSUsername;
+    public void setAppUserFirstname(String appUserFirstname) {
+        this.appUserFirstname = appUserFirstname;
     }
 
-    public String getCMSPassword() {
-        return cMSPassword;
+    public String getAppUserLastname() {
+        return appUserLastname;
     }
 
-    public void setCMSPassword(String cMSPassword) {
-        this.cMSPassword = cMSPassword;
+    public void setAppUserLastname(String appUserLastname) {
+        this.appUserLastname = appUserLastname;
     }
 
-    public Object getDeviceToken() {
-        return deviceToken;
+    public String getAppUserEmail() {
+        return appUserEmail;
     }
 
-    public void setDeviceToken(Object deviceToken) {
-        this.deviceToken = deviceToken;
+    public void setAppUserEmail(String appUserEmail) {
+        this.appUserEmail = appUserEmail;
     }
 
-    public Object getAppType() {
-        return appType;
+    public String getApUserPhoneNumber() {
+        return apUserPhoneNumber;
     }
 
-    public void setAppType(Object appType) {
-        this.appType = appType;
+    public void setApUserPhoneNumber(String apUserPhoneNumber) {
+        this.apUserPhoneNumber = apUserPhoneNumber;
     }
 
-    public Object getPlatform() {
-        return platform;
+    public String getAppUserProfileImage() {
+        return appUserProfileImage;
     }
 
-    public void setPlatform(Object platform) {
-        this.platform = platform;
+    public void setAppUserProfileImage(String appUserProfileImage) {
+        this.appUserProfileImage = appUserProfileImage;
     }
 
-    public Object getAppceleratorUserID() {
-        return appceleratorUserID;
+    public String getIsAccountVerified() {
+        return isAccountVerified;
     }
 
-    public void setAppceleratorUserID(Object appceleratorUserID) {
-        this.appceleratorUserID = appceleratorUserID;
-    }
-
-    public String getCMSUserDisplayname() {
-        return cMSUserDisplayname;
-    }
-
-    public void setCMSUserDisplayname(String cMSUserDisplayname) {
-        this.cMSUserDisplayname = cMSUserDisplayname;
-    }
-
-    public Object getLoginType() {
-        return loginType;
-    }
-
-    public void setLoginType(Object loginType) {
-        this.loginType = loginType;
-    }
-
-    public String getCMSUserParentID() {
-        return cMSUserParentID;
-    }
-
-    public void setCMSUserParentID(String cMSUserParentID) {
-        this.cMSUserParentID = cMSUserParentID;
+    public void setIsAccountVerified(String isAccountVerified) {
+        this.isAccountVerified = isAccountVerified;
     }
 }
