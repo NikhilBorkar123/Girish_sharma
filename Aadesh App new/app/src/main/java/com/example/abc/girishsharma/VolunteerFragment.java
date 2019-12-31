@@ -30,6 +30,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.abc.girishsharma.Modal.ApiModelData;
 import com.example.abc.girishsharma.Modal.Response;
 import com.example.abc.girishsharma.Modal.Volunteer;
@@ -49,18 +51,17 @@ import static android.app.Activity.RESULT_OK;
 
 public class VolunteerFragment extends Fragment {
     View view;
-    String mediaPath, proff;
+    String mediaPath, proff,profVal;
     Uri selectedImage;
     VolunteerDatum volunteerDatum = new VolunteerDatum();
-//    private String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,pic;
     RequestBody s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, pic, volID, appID, cmiId;
     TextInputLayout Fname, Lname, Email, Phone, Adr1, Adr2, City, State, Pincode;
-//    Button submit;
     Spinner profession;
     AnimationDrawable animationDrawable;
-
-
+    AwesomeValidation awesomeValidation;
     private CircleImageView imgView;
+    Button send;
+
     String[] spinnerValue = {"Profession",
             "Private Company",
             "Government/Public Sector",
@@ -78,20 +79,8 @@ public class VolunteerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_volunteer, container, false);
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         findViews();
-        view.findViewById(R.id.subbtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData();
-                sendFormDetails();
-                // loading spinner
-                ImageView loading=view.findViewById(R.id.imageView9);
-                animationDrawable=(AnimationDrawable)loading.getDrawable();
-                loading.setVisibility(View.VISIBLE);
-                animationDrawable.start();
-
-            }
-        });
         imgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,13 +89,9 @@ public class VolunteerFragment extends Fragment {
                 startActivityForResult(imageIntent, 0);
             }
         });
-
-
-        //set spinner value
         profession = view.findViewById(R.id.spProf);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, spinnerValue);
         profession.setAdapter(adapter);
-
         profession.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -125,6 +110,77 @@ public class VolunteerFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (profession.getSelectedItem().toString().trim().equals("Profession")) {
+                    Toast.makeText(getContext(), "Please select Profession....", Toast.LENGTH_SHORT).show();
+                    profVal = "false";
+                } else {
+                    profVal = "true";
+                }
+                awesomeValidation.addValidation(getActivity(), R.id.fname, "[a-zA-Z\\s]+", R.string.nameError);
+                awesomeValidation.addValidation(getActivity(), R.id.lname, "[a-zA-Z\\s]+", R.string.nameError);
+                awesomeValidation.addValidation(getActivity(), R.id.email, android.util.Patterns.EMAIL_ADDRESS, R.string.emailError);
+                awesomeValidation.addValidation(getActivity(), R.id.phone, "^[2-9]{2}[0-9]{8}$", R.string.phoneError);
+                awesomeValidation.addValidation(getActivity(), R.id.Address1, "[a-zA-Z\\s]+", R.string.addressError);
+                awesomeValidation.addValidation(getActivity(), R.id.Address2, "[a-zA-Z\\s]+", R.string.addressError);
+                awesomeValidation.addValidation(getActivity(), R.id.city, "[a-zA-Z\\s]+", R.string.cityError);
+                awesomeValidation.addValidation(getActivity(), R.id.state, "[a-zA-Z\\s]+", R.string.stateError);
+                awesomeValidation.addValidation(getActivity(), R.id.pincode, "^[0-9]{6}$", R.string.pincodeError);
+                if (awesomeValidation.validate() && profVal.equals("true")) {
+                    try {
+                        sendFormDetails();
+                        ImageView loading=view.findViewById(R.id.imageView9);
+                        animationDrawable=(AnimationDrawable)loading.getDrawable();
+                        loading.setVisibility(View.VISIBLE);
+                        animationDrawable.start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        super.onActivityCreated(savedInstanceState);
+    }
+
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (profession.getSelectedItem().toString().trim().equals("Profession")) {
+//                    Toast.makeText(getContext(), "Please select Profession....", Toast.LENGTH_SHORT).show();
+//                    profVal = "false";
+//                } else {
+//                    profVal = "true";
+//                }
+//                awesomeValidation.addValidation(getActivity(), R.id.fname, "[a-zA-Z\\s]+", R.string.nameError);
+//                awesomeValidation.addValidation(getActivity(), R.id.lname, "[a-zA-Z\\s]+", R.string.nameError);
+//                awesomeValidation.addValidation(getActivity(), R.id.email, android.util.Patterns.EMAIL_ADDRESS, R.string.emailError);
+//                awesomeValidation.addValidation(getActivity(), R.id.phone, "^[2-9]{2}[0-9]{8}$", R.string.phoneError);
+//                awesomeValidation.addValidation(getActivity(), R.id.Address1, "[a-zA-Z\\s]+", R.string.addressError);
+//                awesomeValidation.addValidation(getActivity(), R.id.Address2, "[a-zA-Z\\s]+", R.string.addressError);
+//                awesomeValidation.addValidation(getActivity(), R.id.city, "[a-zA-Z\\s]+", R.string.cityError);
+//                awesomeValidation.addValidation(getActivity(), R.id.state, "[a-zA-Z\\s]+", R.string.stateError);
+//                awesomeValidation.addValidation(getActivity(), R.id.pincode, "^[0-9]{6}$", R.string.pincodeError);
+//                if (awesomeValidation.validate() && profVal.equals("true")) {
+//                    try {
+//                        sendFormDetails();
+//                        ImageView loading=view.findViewById(R.id.imageView9);
+//                        animationDrawable=(AnimationDrawable)loading.getDrawable();
+//                        loading.setVisibility(View.VISIBLE);
+//                        animationDrawable.start();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+//        super.onActivityCreated(savedInstanceState);
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -151,6 +207,7 @@ public class VolunteerFragment extends Fragment {
     }
 
     private void findViews() {
+        send = view.findViewById(R.id.subbtn);
         imgView = view.findViewById(R.id.image);
         Fname = view.findViewById(R.id.fname);
         Lname = view.findViewById(R.id.lname);
@@ -161,41 +218,28 @@ public class VolunteerFragment extends Fragment {
         City = view.findViewById(R.id.city);
         State = view.findViewById(R.id.state);
         Pincode = view.findViewById(R.id.pincode);
-
     }
-
     private void getData() {
-
         s1 = RequestBody.create(MediaType.parse("text/plain"), Fname.getEditText().getText().toString());
         volunteerDatum.setFname(Fname.getEditText().getText().toString());
-
         s2 = RequestBody.create(MediaType.parse("text/plain"), Lname.getEditText().getText().toString());
         volunteerDatum.setLname(Lname.getEditText().getText().toString());
-
         s3 = RequestBody.create(MediaType.parse("text/plain"), profession.getSelectedItem().toString());
         volunteerDatum.setProfession(proff);
-
         s4 = RequestBody.create(MediaType.parse("text/plain"), Email.getEditText().getText().toString());
         volunteerDatum.setEmail(Email.getEditText().getText().toString());
-
         s5 = RequestBody.create(MediaType.parse("text/plain"), Phone.getEditText().getText().toString());
         volunteerDatum.setPhone(Phone.getEditText().getText().toString());
-
         s6 = RequestBody.create(MediaType.parse("text/plain"), Adr1.getEditText().getText().toString());
         volunteerDatum.setAddress1(Adr1.getEditText().getText().toString());
-
         s7 = RequestBody.create(MediaType.parse("text/plain"), Adr2.getEditText().getText().toString());
         volunteerDatum.setAddress2(Adr2.getEditText().getText().toString());
-
         s8 = RequestBody.create(MediaType.parse("text/plain"), City.getEditText().getText().toString());
         volunteerDatum.setCity(City.getEditText().getText().toString());
-
         s9 = RequestBody.create(MediaType.parse("text/plain"), State.getEditText().getText().toString());
         volunteerDatum.setState(State.getEditText().getText().toString());
-
         s10 = RequestBody.create(MediaType.parse("text/plain"), Pincode.getEditText().getText().toString());
         volunteerDatum.setPin(Pincode.getEditText().getText().toString());
-//        pic = imageString;
         volID = RequestBody.create(MediaType.parse("text/plain"), "1");
         volunteerDatum.setVolunteerID("1");
         appID = RequestBody.create(MediaType.parse("text/plain"), "2");
@@ -203,33 +247,24 @@ public class VolunteerFragment extends Fragment {
         cmiId = RequestBody.create(MediaType.parse("text/plain"), "10");
         volunteerDatum.setCMSUserAuthenticationID("10");
     }
-
     private void sendFormDetails() {
+        getData();
         File file = new File(mediaPath);
         Log.e("file path is :", mediaPath);
-
         Log.e("isFile", "" + file.isFile());
-
-
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         pic = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("volunteerImage", file.getName(), pic);
-
-
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<JsonObject> call = apiInterface.sendDetails(volID, appID, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, appID, body);
         Log.e("call is", "" + call);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, retrofit2.Response<JsonObject> response) {
-
                 JsonObject volunteer = response.body();
                 Log.e("becomeAVolunteer res", volunteer + "");
-
-
                 String success_message = volunteer.get("success").getAsString();
                 Log.e("the success message is", success_message + "");
-
                 ImageView loading=view.findViewById(R.id.imageView9);
                 if (volunteer != null) {
                     if (success_message.equals("true")) {
@@ -254,9 +289,7 @@ public class VolunteerFragment extends Fragment {
                     assert volunteer != null;
                     Log.v("Response error", volunteer.toString());
                 }
-
             }
-
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Toast.makeText(getContext(), "failure", Toast.LENGTH_SHORT).show();

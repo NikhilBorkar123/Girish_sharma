@@ -5,6 +5,7 @@ import com.example.abc.girishsharma.Modal.Comment;
 import com.example.abc.girishsharma.Modal.Example;
 import com.example.abc.girishsharma.Modal.Example2;
 import com.example.abc.girishsharma.Modal.LoginModelData;
+import com.example.abc.girishsharma.Modal.UpdateProfileData;
 import com.example.abc.girishsharma.Modal.VisionExample;
 import com.example.abc.girishsharma.Modal.Volunteer;
 import com.google.gson.JsonObject;
@@ -136,5 +137,15 @@ public interface ApiInterface {
                                    @Field("CMSUserAuthenticationID") String cmsID
     );
 
+    @POST("UpdateProfile")
+    @Multipart
+    Call<UpdateProfileData> sendUpdate(
+            @Part ("Appuserid") RequestBody id,
+            @Part("Name")RequestBody name,
+            @Part("email")RequestBody email,
+            @Part("mobileno")RequestBody mobno,
+            @Part("CMSUserAuthenticationID")RequestBody cmsid,
+            @Part MultipartBody.Part Pic
+    );
 
 }

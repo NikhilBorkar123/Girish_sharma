@@ -19,6 +19,15 @@
     <string name="social_title">Social</string>
     <string name="appointment_title">Appointments</string>
     <string name="myprofile_title">My Profile</string>
+    <string name="nameError">Enter a valid Name</string>
+    <string name="emailError">Enter a valid Email</string>
+    <string name="phoneError">Enter a valid Phone</string>
+    <string name="stateError">Enter a valid State</string>
+    <string name="cityError">Enter a valid City</string>
+    <string name="purposeError">Enter a valid Purpose</string>
+    <string name="addressError">Enter a valid Address</string>
+    <string name="pincodeError">Enter a valid Pincode</string>
+    <string name="postError">Enter a valid Post</string>
     <string name="notifications_title">Notifications</string>
     <string name="become_volunteer_title">Become Volunteer</string>
     <string name="share_details_title">Share Details</string>
