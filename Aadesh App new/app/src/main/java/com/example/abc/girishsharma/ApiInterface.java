@@ -44,7 +44,7 @@ public interface ApiInterface {
     Call<Comment> getComment();
 
     @GET("frontend/vision/50")
-    Call<VisionExample> getVision();
+    Call<JsonObject> getVision();
 
     @Multipart
     @POST("becomeAVolunteer")

@@ -77,10 +77,10 @@ public class HomeActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -104,8 +104,8 @@ public class HomeActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new VolunteerFragment()).addToBackStack(backstackname).commit();
             } else if (id == R.id.nav_share_details) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareDetailsFragment()).addToBackStack(backstackname).commit();
-            } else if (id == R.id.nav_notifications) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NotificationFragment()).addToBackStack(backstackname).commit();
+//            } else if (id == R.id.nav_notifications) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NotificationFragment()).addToBackStack(backstackname).commit();
             } else if (id == R.id.nav_myprofile) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyprofileFragment()).addToBackStack(backstackname).commit();
             } else if (id == R.id.nav_my_journey) {
@@ -118,9 +118,10 @@ public class HomeActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventFragment()).addToBackStack(backstackname).commit();
             } else if (id == R.id.nav_logout) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).addToBackStack(backstackname).commit();
-            } else if (id == R.id.nav_settings) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).addToBackStack(backstackname).commit();
             }
+//            } else if (id == R.id.nav_settings) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).addToBackStack(backstackname).commit();
+//            }
         }
 
 

@@ -44,18 +44,18 @@
             android:id="@+id/nav_share_details"
             android:icon="@drawable/ic_share_details"
             android:title="@string/share_your_details" />
-        <item
-            android:id="@+id/nav_notifications"
-            android:icon="@drawable/ic_notifications"
-            android:title="@string/notifications" />
+<!--        <item-->
+<!--            android:id="@+id/nav_notifications"-->
+<!--            android:icon="@drawable/ic_notifications"-->
+<!--            android:title="@string/notifications" />-->
         <item
             android:id="@+id/nav_myprofile"
             android:icon="@drawable/ic_myprofile"
             android:title="@string/my_profile" />
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/settings" />
+<!--        <item-->
+<!--            android:id="@+id/nav_settings"-->
+<!--            android:icon="@drawable/ic_settings"-->
+<!--            android:title="@string/settings" />-->
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"

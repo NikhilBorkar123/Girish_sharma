@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.Resource;
 import com.example.abc.girishsharma.Modal.Datum;
 import com.example.abc.girishsharma.Modal.Example2;
 import com.example.abc.girishsharma.Modal.Message2;
