@@ -32,7 +32,7 @@
     <string name="phone_no" translatable="false">Phone No.</string>
     <string name="gender" translatable="false">Gender :</string>
     <string name="profession" translatable="false">Profession :</string>
-    <string name="bloodgrp" translatable="false">BloodGrp :</string>
+    <string name="bloodgrp" translatable="false">Blood Group :</string>
     <string name="dob">DOB</string>
     <string name="pick_date">DateOfBirth</string>
     <string name="date_of_birth">Date Of Birth</string>
